@@ -109,7 +109,7 @@ window.SITE_CONFIG = {
   // gearbox: "auto" (Automatik) | "manual" (Schaltung)
   fleet: [
     {
-      id: "economy", type: "small", color: "#5bbf3f",
+      id: "economy", type: "small", color: "#519e43",
       category: { de: "Kleinwagen", en: "Small car", ar: "سيارة صغيرة", ru: "Малый класс", fr: "Petite voiture" },
       name: "", image: "",
       seats: 4, bags: 2, gearbox: "auto", ac: true,
