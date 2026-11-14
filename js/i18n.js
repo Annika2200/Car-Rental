@@ -86,8 +86,8 @@ window.I18N = {
       "wa.float": "Open WhatsApp chat",
 
       "hero.eyebrow": "Car rental on the Red Sea",
-      "hero.title": "Your car in Hurghada is already waiting at the airport.",
-      "hero.lead": "Handover at the airport or right at your hotel, fair fixed prices and air conditioning in every car. Send your request via WhatsApp and get a quick reply.",
+      "hero.title": "Your car in Hurghada is already waiting for you.",
+      "hero.lead": "Handover right at the airport, your hotel or your holiday apartment. We offer fair fixed prices and clean, well-maintained cars with air conditioning. Send your request via WhatsApp and we'll get back to you as quickly as possible.",
       "hero.cta": "Request a car",
       "hero.usp1": "✓ Handover at Hurghada Airport (HRG)",
       "hero.usp2": "✓ No hidden fees",
@@ -263,8 +263,8 @@ window.I18N = {
       "wa.float": "فتح محادثة واتساب",
 
       "hero.eyebrow": "تأجير سيارات على البحر الأحمر",
-      "hero.title": "سيارتك في انتظارك في مطار الغردقة.",
-      "hero.lead": "التسليم في المطار أو أمام فندقك مباشرةً، أسعار ثابتة وعادلة، وتكييف في كل سيارة. أرسل طلبك عبر واتساب وستحصل على رد سريع.",
+      "hero.title": "سيارتك في الغردقة بانتظارك بالفعل.",
+      "hero.lead": "التسليم مباشرةً في المطار أو في فندقك أو شقتك السياحية. نقدم أسعارًا ثابتة وعادلة وسيارات نظيفة ومُعتنى بصيانتها ومزودة بالتكييف. أرسل طلبك عبر واتساب وسنتواصل معك في أسرع وقت ممكن.",
       "hero.cta": "اطلب سيارة",
       "hero.usp1": "✓ التسليم في مطار الغردقة (HRG)",
       "hero.usp2": "✓ بدون رسوم خفية",
@@ -440,8 +440,8 @@ window.I18N = {
       "wa.float": "Открыть чат WhatsApp",
 
       "hero.eyebrow": "Аренда авто на Красном море",
-      "hero.title": "Ваш автомобиль уже ждёт вас в аэропорту Хургады.",
-      "hero.lead": "Выдача автомобиля в аэропорту или прямо у отеля, честные фиксированные цены и кондиционер в каждой машине. Отправьте заявку в WhatsApp и быстро получите ответ.",
+      "hero.title": "Ваш автомобиль в Хургаде уже ждёт вас.",
+      "hero.lead": "Передача автомобиля прямо в аэропорту, у вашего отеля или апартаментов. У нас честные фиксированные цены и чистые, ухоженные автомобили с кондиционером. Отправьте заявку в WhatsApp, и мы свяжемся с вами как можно скорее.",
       "hero.cta": "Арендовать авто",
       "hero.usp1": "✓ Выдача в аэропорту Хургады (HRG)",
       "hero.usp2": "✓ Без скрытых платежей",
@@ -617,8 +617,8 @@ window.I18N = {
       "wa.float": "Ouvrir le chat WhatsApp",
 
       "hero.eyebrow": "Location de voiture sur la mer Rouge",
-      "hero.title": "Votre voiture vous attend déjà à l'aéroport de Hurghada.",
-      "hero.lead": "Remise à l'aéroport ou directement à votre hôtel, prix fixes et justes, et climatisation dans toutes les voitures. Envoyez votre demande par WhatsApp et recevez une réponse rapide.",
+      "hero.title": "Votre voiture à Hurghada vous attend déjà.",
+      "hero.lead": "Remise directement à l'aéroport, à votre hôtel ou à votre appartement de vacances. Nous proposons des prix fixes et justes, ainsi que des voitures propres, bien entretenues et climatisées. Envoyez votre demande par WhatsApp et nous vous répondrons dans les plus brefs délais.",
       "hero.cta": "Demander une voiture",
       "hero.usp1": "✓ Remise à l'aéroport de Hurghada (HRG)",
       "hero.usp2": "✓ Aucun frais caché",
