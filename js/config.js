@@ -127,6 +127,20 @@ window.SITE_CONFIG = {
       minDays: 3,
       prices: { day: 1600, week: 10000, twoWeeks: 18500, month: 28000 }
     },
+    {
+      id: "cerato", type: "sedan", color: "#c0392b",
+      category: { de: "Limousine", en: "Saloon", ar: "سيدان", ru: "Седан", fr: "Berline" },
+      name: "Kia Cerato",
+      cover: "img/cars/cerato-card.jpg",
+      images: [
+        "img/cars/cerato-1.jpg", "img/cars/cerato-2.jpg", "img/cars/cerato-3.jpg",
+        "img/cars/cerato-4.jpg", "img/cars/cerato-5.jpg", "img/cars/cerato-6.jpg",
+        "img/cars/cerato-7.jpg"
+      ],
+      seats: 5, gearbox: "auto", ac: true,
+      minDays: 3,
+      prices: { day: 1500, week: 9500, twoWeeks: 17500, month: 27000 }
+    },
 
     // ----- Platzhalter -----
     { id: "economy", type: "small", color: "#519e43",
