@@ -80,7 +80,7 @@ window.SITE_CONFIG = {
     {
       name: { de: "Safaga", en: "Safaga", ar: "سفاجا", ru: "Сафага", fr: "Safaga" },
       info: { de: "ca. 55 km südlich", en: "approx. 55 km south", ar: "حوالي 55 كم جنوبًا", ru: "≈ 55 км к югу", fr: "à env. 55 km au sud" },
-      fee: 1250
+      fee: 1000
     }
   ],
 
