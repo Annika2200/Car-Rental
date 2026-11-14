@@ -2,44 +2,152 @@
   "use strict";
 
   var C = window.SITE_CONFIG;
+  var I = window.I18N;
   var $ = function (s, ctx) { return (ctx || document).querySelector(s); };
   var $$ = function (s, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(s)); };
+  var root = document.documentElement;
 
-  function money(n) {
-    return n.toLocaleString("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " " + C.currency;
+  /* =========================================================
+     SPRACHE
+     ========================================================= */
+  var LANGS = I.languages.map(function (l) { return l.code; });
+  var lang = LANGS.indexOf(root.lang) >= 0 ? root.lang : "de";
+  var langInfo = function () { return I.languages.filter(function (l) { return l.code === lang; })[0]; };
+
+  // Deutsche Originaltexte aus dem HTML merken (für das Zurückschalten)
+  var orig = {};
+  $$("[data-i18n]").forEach(function (el) {
+    var k = el.getAttribute("data-i18n");
+    if (!(k in orig)) orig[k] = el.textContent;
+  });
+  $$("[data-i18n-html]").forEach(function (el) {
+    var k = el.getAttribute("data-i18n-html");
+    if (!(k in orig)) orig[k] = el.innerHTML;
+  });
+  $$("[data-i18n-attr]").forEach(function (el) {
+    el.getAttribute("data-i18n-attr").split(";").forEach(function (pair) {
+      var p = pair.split(":");
+      if (!(p[1] in orig)) orig[p[1]] = el.getAttribute(p[0]);
+    });
+  });
+  orig["meta.title"] = document.title;
+  var metaDesc = $('meta[name="description"]');
+  orig["meta.desc"] = metaDesc.content;
+
+  function t(key, vars) {
+    var s = (I.strings[lang] && I.strings[lang][key]);
+    if (s === undefined) s = I.strings.de[key];
+    if (s === undefined) s = orig[key];
+    if (s === undefined) s = key;
+    if (vars && typeof s === "string") {
+      s = s.replace(/\{(\w+)\}/g, function (m, v) { return v in vars ? vars[v] : m; });
+    }
+    return s;
   }
 
-  /* ---------- Config-Werte einsetzen ---------- */
-  $$("[data-config]").forEach(function (el) {
-    var v = C[el.getAttribute("data-config")];
-    if (v !== undefined) el.textContent = v;
-  });
+  // Mehrsprachige Werte aus config.js: { de: "...", en: "..." } oder einfacher Text
+  function L(v) {
+    if (v && typeof v === "object") return v[lang] || v.de || "";
+    return v;
+  }
+
+  function daysText(n) {
+    var forms = t("days");
+    var cat = "other";
+    try { cat = new Intl.PluralRules(langInfo().locale).select(n); } catch (e) {}
+    var s = forms[cat] || forms.other;
+    return s.replace("{n}", n);
+  }
+
+  function money(n) {
+    return n.toLocaleString(langInfo().locale, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " " + C.currency;
+  }
+
+  function fillConfig() {
+    $$("[data-config]").forEach(function (el) {
+      var v = C[el.getAttribute("data-config")];
+      if (v !== undefined) el.textContent = L(v);
+    });
+  }
+
+  function applyStatic() {
+    $$("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
+    $$("[data-i18n-html]").forEach(function (el) { el.innerHTML = t(el.getAttribute("data-i18n-html")); });
+    $$("[data-i18n-attr]").forEach(function (el) {
+      el.getAttribute("data-i18n-attr").split(";").forEach(function (pair) {
+        var p = pair.split(":");
+        el.setAttribute(p[0], t(p[1]));
+      });
+    });
+    document.title = t("meta.title");
+    metaDesc.content = t("meta.desc");
+    var og = $('meta[property="og:locale"]');
+    if (og) og.content = langInfo().og;
+    fillConfig();
+  }
+
+  /* =========================================================
+     LINKS
+     ========================================================= */
   var waBase = "https://wa.me/" + C.whatsapp;
-  $$("[data-whatsapp]").forEach(function (a) {
-    a.href = waBase + "?text=" + encodeURIComponent("Hallo " + C.company + ", ich interessiere mich für einen Mietwagen.");
-    a.target = "_blank";
-    a.rel = "noopener";
-  });
+  function updateLinks() {
+    $$("[data-whatsapp]").forEach(function (a) {
+      a.href = waBase + "?text=" + encodeURIComponent(t("wa.greeting", { company: C.company }));
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+  }
   $$("[data-phone]").forEach(function (a) { a.href = "tel:" + C.phoneLink; });
   $$("[data-email]").forEach(function (a) { a.href = "mailto:" + C.email; });
   $("#year").textContent = new Date().getFullYear();
 
-  /* ---------- Mobile Navigation ---------- */
+  /* =========================================================
+     MOBILE NAVIGATION
+     ========================================================= */
   var toggle = $(".nav-toggle");
   var nav = $("#main-nav");
-  toggle.addEventListener("click", function () {
-    var open = nav.classList.toggle("open");
+  function setNav(open) {
+    nav.classList.toggle("open", open);
     toggle.setAttribute("aria-expanded", open);
-    toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+    toggle.setAttribute("aria-label", t(open ? "nav.close" : "nav.open"));
+  }
+  toggle.addEventListener("click", function () { setNav(!nav.classList.contains("open")); });
+  $$("a", nav).forEach(function (a) { a.addEventListener("click", function () { setNav(false); }); });
+
+  /* =========================================================
+     SPRACHUMSCHALTER
+     ========================================================= */
+  var langBtn = $(".lang-btn");
+  var langMenu = $("#lang-menu");
+  function setMenu(open) {
+    langMenu.hidden = !open;
+    langBtn.setAttribute("aria-expanded", open);
+  }
+  langBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    setMenu(langMenu.hidden);
+    if (!langMenu.hidden) {
+      var cur = $('[data-lang="' + lang + '"]', langMenu);
+      if (cur) cur.focus();
+    }
   });
-  $$("a", nav).forEach(function (a) {
-    a.addEventListener("click", function () {
-      nav.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest("#lang-switch")) setMenu(false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !langMenu.hidden) { setMenu(false); langBtn.focus(); }
+  });
+  langMenu.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-lang]");
+    if (!b) return;
+    setLanguage(b.getAttribute("data-lang"), true);
+    setMenu(false);
+    langBtn.focus();
   });
 
-  /* ---------- Fahrzeug-Grafiken ---------- */
+  /* =========================================================
+     FAHRZEUG-GRAFIKEN
+     ========================================================= */
   function carSvg(type, color) {
     var body = {
       small: "M40 92 L58 62 Q66 50 82 50 L170 50 Q186 50 198 62 L224 86 L262 92 Q280 96 280 112 L280 124 L24 124 L24 108 Q24 94 40 92Z",
@@ -66,50 +174,70 @@
       "</svg>";
   }
 
-  /* ---------- Flotte rendern ---------- */
+  /* =========================================================
+     DYNAMISCHE INHALTE (werden bei Sprachwechsel neu erzeugt)
+     ========================================================= */
   var grid = $("#fleet-grid");
-  grid.innerHTML = C.fleet.map(function (car) {
-    return '<article class="car card">' +
-      '<div class="car-img">' + carSvg(car.type, car.color) + "</div>" +
-      '<div class="car-body">' +
-        '<p class="car-cat">' + car.category + "</p>" +
-        "<h3>" + car.name + ' <span class="car-similar">oder ähnlich</span></h3>' +
-        '<ul class="car-specs">' +
-          '<li title="Sitze">👤 ' + car.seats + "</li>" +
-          '<li title="Gepäck">🧳 ' + car.bags + "</li>" +
-          '<li title="Getriebe">⚙️ ' + car.gearbox + "</li>" +
-          (car.ac ? '<li title="Klimaanlage">❄️ Klima</li>' : "") +
-        "</ul>" +
-        '<div class="car-foot">' +
-          '<p class="car-price"><span>ab</span> <strong>' + money(car.priceWeek) + '</strong><span>/Tag</span></p>' +
-          '<button type="button" class="btn btn-accent btn-small" data-choose="' + car.id + '">Auswählen</button>' +
-        "</div>" +
-        '<p class="car-price-note">' + money(car.price) + "/Tag · ab " + C.weekThreshold + " Tagen " + money(car.priceWeek) + "/Tag</p>" +
-      "</div></article>";
-  }).join("");
 
-  /* ---------- Select-Felder befüllen ---------- */
-  $$("[data-fleet-select]").forEach(function (sel) {
-    sel.innerHTML = C.fleet.map(function (c) {
-      return '<option value="' + c.id + '">' + c.category + " – " + c.name + " (ab " + money(c.priceWeek) + "/Tag)</option>";
+  function renderFleet() {
+    grid.innerHTML = C.fleet.map(function (car) {
+      return '<article class="car card">' +
+        '<div class="car-img">' + carSvg(car.type, car.color) + "</div>" +
+        '<div class="car-body">' +
+          '<p class="car-cat">' + L(car.category) + "</p>" +
+          '<h3><bdi>' + car.name + '</bdi> <span class="car-similar">' + t("car.similar") + "</span></h3>" +
+          '<ul class="car-specs">' +
+            '<li title="' + t("car.seats") + '">👤 ' + car.seats + "</li>" +
+            '<li title="' + t("car.bags") + '">🧳 ' + car.bags + "</li>" +
+            '<li title="' + t("car.gearbox") + '">⚙️ ' + t(car.gearbox === "manual" ? "car.manual" : "car.auto") + "</li>" +
+            (car.ac ? "<li>❄️ " + t("car.ac") + "</li>" : "") +
+          "</ul>" +
+          '<div class="car-foot">' +
+            '<p class="car-price"><span>' + t("car.from") + '</span> <strong>' + money(car.priceWeek) + "</strong><span>" + t("car.perDay") + "</span></p>" +
+            '<button type="button" class="btn btn-accent btn-small" data-choose="' + car.id + '">' + t("car.choose") + "</button>" +
+          "</div>" +
+          '<p class="car-price-note">' + t("car.weekNote", { price: money(car.price), n: C.weekThreshold, week: money(car.priceWeek) }) + "</p>" +
+        "</div></article>";
     }).join("");
-  });
-  $$("[data-locations]").forEach(function (sel) {
-    sel.innerHTML = C.locations.map(function (l, i) {
-      return '<option value="' + i + '">' + l.name + (l.fee ? " (+" + money(l.fee) + ")" : "") + "</option>";
+  }
+
+  function renderSelects() {
+    $$("[data-fleet-select]").forEach(function (sel) {
+      var v = sel.value;
+      sel.innerHTML = C.fleet.map(function (c) {
+        return '<option value="' + c.id + '">' + L(c.category) + " – " + c.name + " (" + t("car.from") + " " + money(c.priceWeek) + t("car.perDay") + ")</option>";
+      }).join("");
+      if (v) sel.value = v;
+    });
+    $$("[data-locations]").forEach(function (sel) {
+      var v = sel.value;
+      sel.innerHTML = C.locations.map(function (l, i) {
+        return '<option value="' + i + '">' + L(l.name) + (l.fee ? " (+" + money(l.fee) + ")" : "") + "</option>";
+      }).join("");
+      if (v) sel.value = v;
+    });
+  }
+
+  function renderLocations() {
+    $("#locations-list").innerHTML = C.locations.map(function (l) {
+      return '<li class="card"><h3>' + L(l.name) + "</h3><p>" + L(l.info) + '</p><p class="loc-fee">' +
+        (l.fee ? t("loc.delivery", { price: money(l.fee) }) : t("loc.free")) + "</p></li>";
     }).join("");
-  });
-  $("#locations-list").innerHTML = C.locations.map(function (l) {
-    return '<li class="card"><h3>' + l.name + "</h3><p>" + l.info + '</p><p class="loc-fee">' +
-      (l.fee ? "Zustellung " + money(l.fee) : "Kostenlos") + "</p></li>";
-  }).join("");
+  }
 
-  $("#extras").innerHTML = C.extras.map(function (x) {
-    return '<label class="check"><input type="checkbox" name="extra" value="' + x.id + '"><span>' + x.label +
-      ' <em>+' + money(x.price) + (x.oneTime ? " einmalig" : "/Tag") + "</em></span></label>";
-  }).join("");
+  function renderExtras() {
+    var box = $("#extras");
+    var checked = $$('input[name="extra"]:checked', box).map(function (cb) { return cb.value; });
+    box.innerHTML = C.extras.map(function (x) {
+      return '<label class="check"><input type="checkbox" name="extra" value="' + x.id + '"' +
+        (checked.indexOf(x.id) >= 0 ? " checked" : "") + "><span>" + L(x.label) +
+        " <em>+" + money(x.price) + (x.oneTime ? " " + t("extra.oneTime") : t("car.perDay")) + "</em></span></label>";
+    }).join("");
+  }
 
-  /* ---------- Datumsfelder ---------- */
+  /* =========================================================
+     DATUMSFELDER
+     ========================================================= */
   function iso(d) {
     var z = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
     return z.toISOString().slice(0, 10);
@@ -122,7 +250,9 @@
     inp.value = iso(inp.name === "from" ? dStart : dEnd);
   });
 
-  /* ---------- Preisberechnung ---------- */
+  /* =========================================================
+     PREISBERECHNUNG
+     ========================================================= */
   function findCar(id) { return C.fleet.filter(function (c) { return c.id === id; })[0]; }
 
   function days(from, to) {
@@ -141,7 +271,7 @@
     $$('input[name="extra"]:checked', form).forEach(function (cb) {
       var x = C.extras.filter(function (e) { return e.id === cb.value; })[0];
       var cost = x.oneTime ? x.price : x.price * n;
-      extras.push({ label: x.label, cost: cost });
+      extras.push({ label: L(x.label), cost: cost });
       extrasSum += cost;
     });
     var fee = 0;
@@ -156,7 +286,7 @@
 
   function updateQuick() {
     var r = calc(quick);
-    $("#quick-total").textContent = r ? money(r.total) + " · " + r.days + (r.days === 1 ? " Tag" : " Tage") : "–";
+    $("#quick-total").textContent = r ? money(r.total) + " · " + daysText(r.days) : "–";
   }
 
   function updateBooking() {
@@ -166,12 +296,12 @@
       if (booking.car.value) $("#sum-car").textContent = findCar(booking.car.value).name;
       return;
     }
-    $("#sum-car").textContent = r.car.category + " – " + r.car.name;
-    $("#sum-days").textContent = r.days + (r.days === 1 ? " Tag" : " Tage");
+    $("#sum-car").textContent = L(r.car.category) + " – " + r.car.name;
+    $("#sum-days").textContent = daysText(r.days);
     $("#sum-rate").textContent = money(r.rate);
     var ex = r.extras.map(function (e) { return e.label; });
-    if (r.fee) ex.push("Zustellung");
-    $("#sum-extras").textContent = ex.length ? ex.join(", ") + " (" + money(r.extrasSum + r.fee) + ")" : "keine";
+    if (r.fee) ex.push(t("sum.deliveryFee"));
+    $("#sum-extras").textContent = ex.length ? ex.join(t("list.sep")) + " (" + money(r.extrasSum + r.fee) + ")" : t("sum.none");
     $("#sum-total").textContent = money(r.total);
   }
 
@@ -212,69 +342,130 @@
     if (btn) goToBooking(btn.getAttribute("data-choose"));
   });
 
-  /* ---------- Anfrage absenden ---------- */
+  /* =========================================================
+     ANFRAGE ABSENDEN
+     ========================================================= */
   var submitter = "whatsapp";
   $$("[data-channel]", booking).forEach(function (b) {
     b.addEventListener("click", function () { submitter = b.getAttribute("data-channel"); });
   });
 
   function fmtDate(v) {
-    return v ? new Date(v).toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" }) : "";
+    if (!v) return "";
+    var p = v.split("-");
+    var d = new Date(+p[0], +p[1] - 1, +p[2]);
+    return d.toLocaleDateString(langInfo().locale, { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
+  }
+
+  function validate() {
+    var problems = [];
+    if (!booking.name.value.trim()) problems.push(t("err.name"));
+    if (!booking.phone.value.trim()) problems.push(t("err.phone"));
+    if (!calc(booking)) problems.push(t("err.dates"));
+    if (!booking.privacy.checked) problems.push(t("err.privacy"));
+    return problems;
   }
 
   booking.addEventListener("submit", function (e) {
     e.preventDefault();
     var err = $("#form-error");
-    var r = calc(booking);
-    var problems = [];
-    if (!booking.name.value.trim()) problems.push("deinen Namen");
-    if (!booking.phone.value.trim()) problems.push("deine Telefonnummer");
-    if (!r) problems.push("ein gültiges Rückgabedatum nach dem Abholdatum");
-    if (!booking.privacy.checked) problems.push("die Zustimmung zur Datenschutzerklärung");
+    var problems = validate();
     if (problems.length) {
-      err.textContent = "Bitte ergänze noch: " + problems.join(", ") + ".";
+      err.textContent = t("err.prefix") + problems.join(t("list.sep")) + ".";
       err.hidden = false;
       return;
     }
     err.hidden = true;
+    var r = calc(booking);
 
-    var L = C.locations;
+    var Loc = C.locations;
+    var time = function (v) { return t("msg.time", { t: v }); };
     var lines = [
-      "Mietwagen-Anfrage – " + C.company,
+      t("msg.title", { company: C.company }),
       "",
-      "Fahrzeug: " + r.car.category + " – " + r.car.name,
-      "Abholung: " + fmtDate(booking.from.value) + ", " + booking.fromTime.value + " Uhr – " + L[booking.pickup.value].name,
-      "Rückgabe: " + fmtDate(booking.to.value) + ", " + booking.toTime.value + " Uhr – " + L[booking.dropoff.value].name,
-      "Mietdauer: " + r.days + (r.days === 1 ? " Tag" : " Tage")
+      t("msg.car") + ": " + L(r.car.category) + " – " + r.car.name,
+      t("msg.pickup") + ": " + fmtDate(booking.from.value) + ", " + time(booking.fromTime.value) + " – " + L(Loc[booking.pickup.value].name),
+      t("msg.return") + ": " + fmtDate(booking.to.value) + ", " + time(booking.toTime.value) + " – " + L(Loc[booking.dropoff.value].name),
+      t("msg.duration") + ": " + daysText(r.days)
     ];
-    if (booking.flight.value.trim()) lines.push("Flugnummer: " + booking.flight.value.trim());
-    lines.push("Extras: " + (r.extras.length ? r.extras.map(function (x) { return x.label; }).join(", ") : "keine"));
-    lines.push("Geschätzter Preis: " + money(r.total));
+    if (booking.flight.value.trim()) lines.push(t("msg.flight") + ": " + booking.flight.value.trim());
+    lines.push(t("msg.extras") + ": " + (r.extras.length ? r.extras.map(function (x) { return x.label; }).join(t("list.sep")) : t("sum.none")));
+    lines.push(t("msg.price") + ": " + money(r.total));
     lines.push("");
-    lines.push("Name: " + booking.name.value.trim());
-    lines.push("Telefon: " + booking.phone.value.trim());
-    if (booking.email.value.trim()) lines.push("E-Mail: " + booking.email.value.trim());
-    if (booking.hotel.value.trim()) lines.push("Hotel: " + booking.hotel.value.trim());
-    if (booking.message.value.trim()) { lines.push(""); lines.push("Nachricht: " + booking.message.value.trim()); }
+    lines.push(t("msg.name") + ": " + booking.name.value.trim());
+    lines.push(t("msg.phone") + ": " + booking.phone.value.trim());
+    if (booking.email.value.trim()) lines.push(t("msg.email") + ": " + booking.email.value.trim());
+    if (booking.hotel.value.trim()) lines.push(t("msg.hotel") + ": " + booking.hotel.value.trim());
+    if (booking.message.value.trim()) { lines.push(""); lines.push(t("msg.message") + ": " + booking.message.value.trim()); }
+    lines.push("");
+    lines.push(t("msg.lang") + ": " + langInfo().name);
 
     var text = lines.join("\n");
     if (submitter === "email") {
       window.location.href = "mailto:" + C.email +
-        "?subject=" + encodeURIComponent("Mietwagen-Anfrage " + booking.name.value.trim()) +
+        "?subject=" + encodeURIComponent(t("mail.subject", { name: booking.name.value.trim() })) +
         "&body=" + encodeURIComponent(text);
     } else {
       window.open(waBase + "?text=" + encodeURIComponent(text), "_blank", "noopener");
     }
   });
 
-  /* ---------- Google Maps erst nach Klick (DSGVO) ---------- */
-  $("#load-map").addEventListener("click", function () {
-    var q = encodeURIComponent(C.address);
-    $("#map").innerHTML = '<iframe title="Karte ' + C.company + '" src="https://maps.google.com/maps?q=' + q +
-      '&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
+  /* =========================================================
+     GOOGLE MAPS ERST NACH KLICK (DSGVO)
+     ========================================================= */
+  $("#map").addEventListener("click", function (e) {
+    if (!e.target.closest("#load-map")) return;
+    var q = encodeURIComponent(C.mapQuery || L(C.address));
+    var hl = lang;
+    $("#map").innerHTML = '<iframe title="' + t("map.iframe") + " " + C.company + '" src="https://maps.google.com/maps?q=' + q +
+      "&hl=" + hl + '&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
     $("#map").classList.add("map-loaded");
   });
 
-  updateQuick();
-  updateBooking();
+  /* =========================================================
+     SPRACHE ANWENDEN
+     ========================================================= */
+  function setLanguage(code, remember) {
+    if (LANGS.indexOf(code) < 0) code = "de";
+    lang = code;
+    var info = langInfo();
+    root.lang = code;
+    root.dir = info.dir;
+
+    applyStatic();
+    renderFleet();
+    renderSelects();
+    renderLocations();
+    renderExtras();
+    updateLinks();
+    setNav(nav.classList.contains("open"));
+
+    $(".lang-current").textContent = info.short;
+    $$("[data-lang]", langMenu).forEach(function (b) {
+      b.setAttribute("aria-current", b.getAttribute("data-lang") === code ? "true" : "false");
+    });
+
+    // Fehlermeldung in neuer Sprache neu aufbauen
+    var err = $("#form-error");
+    if (!err.hidden) {
+      var p = validate();
+      if (p.length) err.textContent = t("err.prefix") + p.join(t("list.sep")) + ".";
+      else err.hidden = true;
+    }
+
+    updateQuick();
+    updateBooking();
+
+    if (remember) {
+      try { localStorage.setItem("hd-lang", code); } catch (e) {}
+      try {
+        var url = new URL(location.href);
+        if (code === "de") url.searchParams.delete("lang"); else url.searchParams.set("lang", code);
+        history.replaceState(null, "", url.pathname + url.search + url.hash);
+      } catch (e) {}
+    }
+    root.classList.remove("i18n-loading");
+  }
+
+  setLanguage(lang, false);
 })();
