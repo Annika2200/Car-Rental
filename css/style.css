@@ -30,7 +30,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; background: var(--bg); }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; background: var(--bg); }
 body { margin: 0; font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
 img, svg { max-width: 100%; display: block; }
 a { color: var(--yellow); }
@@ -70,13 +70,9 @@ p { margin: 0 0 1em; }
 
 /* ===== Header ===== */
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(15, 13, 11, .82); backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px); border-bottom: 1px solid var(--line); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 84px; }
 .logo { flex-shrink: 0; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
-.logo-img { height: 46px; width: auto; border-radius: 10px; box-shadow: 0 0 0 1px var(--line-strong); }
-.logo-text { display: flex; flex-direction: column; line-height: 1.05; }
-.logo-name { font-size: 1.12rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
-.logo-name strong { color: var(--yellow); font-weight: 900; }
-.logo-tag { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+.logo-img { height: 68px; width: auto; border-radius: 10px; box-shadow: 0 0 0 1px var(--line-strong); }
 .main-nav { display: flex; align-items: center; gap: 26px; margin-inline-start: auto; }
 .main-nav a:not(.btn) { white-space: nowrap; color: var(--muted); text-decoration: none; font-weight: 600; font-size: .94rem; transition: color .2s; }
 .main-nav a:not(.btn):hover { color: #fff; }
@@ -182,7 +178,7 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
 .booking { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: start; }
 .booking-info > p { color: #d6cfc4; }
 .booking-form { padding: 30px; }
-.summary { padding: 24px; margin-top: 26px; position: sticky; top: 96px; background: var(--surface-2); }
+.summary { padding: 24px; margin-top: 26px; position: sticky; top: 108px; background: var(--surface-2); }
 .summary dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0 0 16px; font-size: .95rem; }
 .summary dt { color: var(--muted); }
 .summary dd { margin: 0; text-align: end; font-weight: 600; }
@@ -261,7 +257,7 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
 @media (max-width: 1100px) {
   .nav-toggle { display: block; }
   .lang-switch { margin-inline-start: auto; }
-  .main-nav { position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg-2); padding: 8px 20px 20px; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); display: none; }
+  .main-nav { position: absolute; top: 84px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg-2); padding: 8px 20px 20px; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); display: none; }
   .main-nav.open { display: flex; }
   .main-nav a:not(.btn) { padding: 13px 0; border-bottom: 1px solid var(--line); color: var(--text); }
   .main-nav .btn { margin-top: 14px; }
@@ -279,11 +275,11 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
   .section { padding: 64px 0; }
   .container { padding: 0 16px; }
   .hero { padding: 44px 0 100px; }
-  .logo-tag { display: none; }
   .lang-btn svg:first-child { display: none; }
   .header-inner { gap: 10px; }
-  .logo-img { height: 40px; }
-  .logo-name { font-size: 1rem; }
+  .logo-img { height: 60px; }
+  .header-inner { height: 76px; }
+  .main-nav { top: 76px !important; }
   .grid-4, .grid-2, .fleet-grid, .steps, .extras { grid-template-columns: 1fr; }
   .grid-2 { gap: 36px; }
   .row-2 { grid-template-columns: 1fr; gap: 0; }
@@ -291,9 +287,6 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
   .footer-brand { flex-direction: column; align-items: flex-start; }
   .copyright { text-align: start; }
   .booking-form, .quick-form { padding: 20px; }
-}
-@media (max-width: 380px) {
-  .logo-text { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
