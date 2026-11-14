@@ -89,9 +89,8 @@ window.I18N = {
       "hero.title": "Your car in Hurghada is already waiting for you.",
       "hero.lead": "Handover right at the airport, your hotel or your holiday apartment. We offer fair fixed prices and clean, well-maintained cars with air conditioning. Send your request via WhatsApp and we'll get back to you as quickly as possible.",
       "hero.cta": "Request a car",
-      "hero.usp1": "✓ Handover at Hurghada Airport (HRG)",
+      "hero.usp1": "✓ Handover at your preferred location",
       "hero.usp2": "✓ No hidden fees",
-      "hero.usp3": "✓ Free cancellation up to 48 h before",
 
       "quick.title": "Calculate your price",
       "quick.est": "Estimated price",
@@ -266,9 +265,8 @@ window.I18N = {
       "hero.title": "سيارتك في الغردقة بانتظارك بالفعل.",
       "hero.lead": "التسليم مباشرةً في المطار أو في فندقك أو شقتك السياحية. نقدم أسعارًا ثابتة وعادلة وسيارات نظيفة ومُعتنى بصيانتها ومزودة بالتكييف. أرسل طلبك عبر واتساب وسنتواصل معك في أسرع وقت ممكن.",
       "hero.cta": "اطلب سيارة",
-      "hero.usp1": "✓ التسليم في مطار الغردقة (HRG)",
+      "hero.usp1": "✓ التسليم في المكان الذي تختاره",
       "hero.usp2": "✓ بدون رسوم خفية",
-      "hero.usp3": "✓ إلغاء مجاني حتى 48 ساعة قبل الموعد",
 
       "quick.title": "احسب السعر",
       "quick.est": "السعر التقديري",
@@ -443,9 +441,8 @@ window.I18N = {
       "hero.title": "Ваш автомобиль в Хургаде уже ждёт вас.",
       "hero.lead": "Передача автомобиля прямо в аэропорту, у вашего отеля или апартаментов. У нас честные фиксированные цены и чистые, ухоженные автомобили с кондиционером. Отправьте заявку в WhatsApp, и мы свяжемся с вами как можно скорее.",
       "hero.cta": "Арендовать авто",
-      "hero.usp1": "✓ Выдача в аэропорту Хургады (HRG)",
+      "hero.usp1": "✓ Передача в удобном для вас месте",
       "hero.usp2": "✓ Без скрытых платежей",
-      "hero.usp3": "✓ Бесплатная отмена за 48 ч",
 
       "quick.title": "Рассчитать стоимость",
       "quick.est": "Примерная стоимость",
@@ -620,9 +617,8 @@ window.I18N = {
       "hero.title": "Votre voiture à Hurghada vous attend déjà.",
       "hero.lead": "Remise directement à l'aéroport, à votre hôtel ou à votre appartement de vacances. Nous proposons des prix fixes et justes, ainsi que des voitures propres, bien entretenues et climatisées. Envoyez votre demande par WhatsApp et nous vous répondrons dans les plus brefs délais.",
       "hero.cta": "Demander une voiture",
-      "hero.usp1": "✓ Remise à l'aéroport de Hurghada (HRG)",
+      "hero.usp1": "✓ Remise à l'endroit de votre choix",
       "hero.usp2": "✓ Aucun frais caché",
-      "hero.usp3": "✓ Annulation gratuite jusqu'à 48 h avant",
 
       "quick.title": "Calculer le prix",
       "quick.est": "Prix estimé",
