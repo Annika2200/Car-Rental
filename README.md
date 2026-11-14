@@ -18,6 +18,19 @@ Nach etwa einer Minute ist die Seite unter `https://<benutzername>.github.io/Car
 
 **Netlify:** Auf app.netlify.com den Ordner per Drag & Drop hochladen und fertig.
 
+## Fahrzeuge eintragen
+
+Die Flotte besteht im Moment aus **Platzhaltern**. Kategorien und Preise sind Beispielwerte, auf der Seite steht „Modell folgt“ mit einer Grafik.
+Für jedes echte Fahrzeug in `js/config.js` bei der passenden Kategorie eintragen:
+
+```js
+name: "Hyundai Accent",
+image: "img/cars/accent.jpg",
+```
+
+Fotos in den Ordner `img/cars/` legen, am besten im Querformat (ca. 2:1, mindestens 800 px breit).
+Preise, Sitze, Gepäck und Getriebe in derselben Datei anpassen. Nicht benötigte Kategorien löschen.
+
 ## Sprachen
 
 Die Startseite gibt es auf **Deutsch, Englisch, Arabisch, Russisch und Französisch**. Arabisch wird von rechts nach links angezeigt.

@@ -51,6 +51,15 @@
     return v;
   }
 
+  function esc(v) {
+    return String(v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
+  }
+
+  // "Kategorie – Modell" bzw. nur "Kategorie", solange kein Modell eingetragen ist
+  function carLabel(car) {
+    return L(car.category) + (car.name ? " – " + car.name : "");
+  }
+
   function daysText(n) {
     var forms = t("days");
     var cat = "other";
@@ -181,11 +190,16 @@
 
   function renderFleet() {
     grid.innerHTML = C.fleet.map(function (car) {
-      return '<article class="car card">' +
-        '<div class="car-img">' + carSvg(car.type, car.color) + "</div>" +
+      var cat = L(car.category);
+      var img = car.image
+        ? '<div class="car-img"><img src="' + esc(car.image) + '" alt="' + esc((car.name || cat)) + '" loading="lazy" width="632" height="300"></div>'
+        : '<div class="car-img is-placeholder">' + carSvg(car.type, car.color) + '<span class="car-badge">' + t("car.photoSoon") + "</span></div>";
+      var title = car.name
+        ? '<h3><bdi>' + esc(car.name) + '</bdi> <span class="car-similar">' + t("car.similar") + "</span></h3>"
+        : '<h3 class="is-placeholder">' + t("car.placeholder") + "</h3>";
+      return '<article class="car card">' + img +
         '<div class="car-body">' +
-          '<p class="car-cat">' + L(car.category) + "</p>" +
-          '<h3><bdi>' + car.name + '</bdi> <span class="car-similar">' + t("car.similar") + "</span></h3>" +
+          '<p class="car-cat">' + cat + "</p>" + title +
           '<ul class="car-specs">' +
             '<li title="' + t("car.seats") + '">👤 ' + car.seats + "</li>" +
             '<li title="' + t("car.bags") + '">🧳 ' + car.bags + "</li>" +
@@ -205,7 +219,7 @@
     $$("[data-fleet-select]").forEach(function (sel) {
       var v = sel.value;
       sel.innerHTML = C.fleet.map(function (c) {
-        return '<option value="' + c.id + '">' + L(c.category) + " – " + c.name + " (" + t("car.from") + " " + money(c.priceWeek) + t("car.perDay") + ")</option>";
+        return '<option value="' + c.id + '">' + carLabel(c) + " (" + t("car.from") + " " + money(c.priceWeek) + t("car.perDay") + ")</option>";
       }).join("");
       if (v) sel.value = v;
     });
@@ -293,10 +307,10 @@
     var r = calc(booking);
     if (!r) {
       ["car", "days", "rate", "extras", "total"].forEach(function (k) { $("#sum-" + k).textContent = "–"; });
-      if (booking.car.value) $("#sum-car").textContent = findCar(booking.car.value).name;
+      if (booking.car.value) $("#sum-car").textContent = carLabel(findCar(booking.car.value));
       return;
     }
-    $("#sum-car").textContent = L(r.car.category) + " – " + r.car.name;
+    $("#sum-car").textContent = carLabel(r.car);
     $("#sum-days").textContent = daysText(r.days);
     $("#sum-rate").textContent = money(r.rate);
     var ex = r.extras.map(function (e) { return e.label; });
@@ -383,7 +397,7 @@
     var lines = [
       t("msg.title", { company: C.company }),
       "",
-      t("msg.car") + ": " + L(r.car.category) + " – " + r.car.name,
+      t("msg.car") + ": " + carLabel(r.car),
       t("msg.pickup") + ": " + fmtDate(booking.from.value) + ", " + time(booking.fromTime.value) + " – " + L(Loc[booking.pickup.value].name),
       t("msg.return") + ": " + fmtDate(booking.to.value) + ", " + time(booking.toTime.value) + " – " + L(Loc[booking.dropoff.value].name),
       t("msg.duration") + ": " + daysText(r.days)

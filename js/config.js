@@ -98,42 +98,55 @@ window.SITE_CONFIG = {
   ],
 
   // Deine Fahrzeugflotte – Preise pro Tag
-  // type: "small" | "sedan" | "suv" | "van"  (bestimmt die Grafik)
+  // -------------------------------------------------------
+  // PLATZHALTER: Kategorien und Preise sind Beispielwerte.
+  // Sobald ein echtes Fahrzeug feststeht, trage ein:
+  //   name:  "Hyundai Accent"          (Modell)
+  //   image: "img/cars/accent.jpg"     (Foto, Querformat ca. 2:1)
+  // Ohne name/image zeigt die Website "Modell folgt" und eine Grafik.
+  // Nicht benötigte Kategorien einfach löschen, neue kopieren.
+  // type: "small" | "sedan" | "suv" | "van"  (Grafik, solange kein Foto da ist)
   // gearbox: "auto" (Automatik) | "manual" (Schaltung)
   fleet: [
     {
-      id: "economy", name: "Hyundai i10", type: "small", color: "#5bbf3f",
+      id: "economy", type: "small", color: "#5bbf3f",
       category: { de: "Kleinwagen", en: "Small car", ar: "سيارة صغيرة", ru: "Малый класс", fr: "Petite voiture" },
+      name: "", image: "",
       seats: 4, bags: 2, gearbox: "auto", ac: true,
       price: 25, priceWeek: 22
     },
     {
-      id: "compact", name: "Toyota Yaris", type: "small", color: "#d9534f",
+      id: "compact", type: "small", color: "#d9534f",
       category: { de: "Kompaktklasse", en: "Compact", ar: "مدمجة", ru: "Компакт", fr: "Compacte" },
+      name: "", image: "",
       seats: 5, bags: 2, gearbox: "auto", ac: true,
       price: 30, priceWeek: 27
     },
     {
-      id: "sedan", name: "Hyundai Elantra", type: "sedan", color: "#3c6e91",
+      id: "sedan", type: "sedan", color: "#3c6e91",
       category: { de: "Limousine", en: "Saloon", ar: "سيدان", ru: "Седан", fr: "Berline" },
+      name: "", image: "",
       seats: 5, bags: 3, gearbox: "auto", ac: true,
       price: 38, priceWeek: 34
     },
     {
-      id: "suv", name: "Kia Sportage", type: "suv", color: "#9aa3a8",
+      id: "suv", type: "suv", color: "#9aa3a8",
       category: { de: "SUV", en: "SUV", ar: "SUV", ru: "Кроссовер (SUV)", fr: "SUV" },
+      name: "", image: "",
       seats: 5, bags: 4, gearbox: "auto", ac: true,
       price: 55, priceWeek: 49
     },
     {
-      id: "jeep", name: "Toyota Land Cruiser", type: "suv", color: "#c9b79c",
+      id: "jeep", type: "suv", color: "#c9b79c",
       category: { de: "Geländewagen 4x4", en: "4x4 off-roader", ar: "دفع رباعي 4x4", ru: "Внедорожник 4x4", fr: "4x4 tout-terrain" },
+      name: "", image: "",
       seats: 7, bags: 5, gearbox: "auto", ac: true,
       price: 95, priceWeek: 85
     },
     {
-      id: "van", name: "Toyota Hiace", type: "van", color: "#f5f5f0",
+      id: "van", type: "van", color: "#f5f5f0",
       category: { de: "Kleinbus", en: "Minibus", ar: "ميني باص", ru: "Микроавтобус", fr: "Minibus" },
+      name: "", image: "",
       seats: 12, bags: 8, gearbox: "manual", ac: true,
       price: 80, priceWeek: 72
     }

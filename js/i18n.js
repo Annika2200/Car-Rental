@@ -22,6 +22,8 @@ window.I18N = {
     de: {
       "nav.open": "Menü öffnen",
       "nav.close": "Menü schließen",
+      "car.placeholder": "Modell folgt",
+      "car.photoSoon": "Foto folgt",
       "car.similar": "oder ähnlich",
       "car.choose": "Auswählen",
       "car.from": "ab",
@@ -199,6 +201,8 @@ window.I18N = {
       "footer.privacy": "Privacy policy",
       "footer.terms": "Rental terms",
 
+      "car.placeholder": "Model coming soon",
+      "car.photoSoon": "Photo coming soon",
       "car.similar": "or similar",
       "car.choose": "Select",
       "car.from": "from",
@@ -374,6 +378,8 @@ window.I18N = {
       "footer.privacy": "سياسة الخصوصية",
       "footer.terms": "شروط الإيجار",
 
+      "car.placeholder": "الطراز قريبًا",
+      "car.photoSoon": "الصورة قريبًا",
       "car.similar": "أو ما يماثلها",
       "car.choose": "اختر",
       "car.from": "من",
@@ -549,6 +555,8 @@ window.I18N = {
       "footer.privacy": "Конфиденциальность",
       "footer.terms": "Условия аренды",
 
+      "car.placeholder": "Модель скоро",
+      "car.photoSoon": "Фото скоро",
       "car.similar": "или аналог",
       "car.choose": "Выбрать",
       "car.from": "от",
@@ -724,6 +732,8 @@ window.I18N = {
       "footer.privacy": "Confidentialité",
       "footer.terms": "Conditions de location",
 
+      "car.placeholder": "Modèle à venir",
+      "car.photoSoon": "Photo à venir",
       "car.similar": "ou similaire",
       "car.choose": "Choisir",
       "car.from": "dès",
