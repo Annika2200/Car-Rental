@@ -92,8 +92,6 @@ window.SITE_CONFIG = {
       label: { de: "Zusatzfahrer", en: "Additional driver", ar: "سائق إضافي", ru: "Дополнительный водитель", fr: "Conducteur supplémentaire" } },
     { id: "gps", price: 150,
       label: { de: "Navi / GPS", en: "Navigation / GPS", ar: "جهاز ملاحة / GPS", ru: "Навигатор / GPS", fr: "GPS / navigation" } },
-    { id: "fullins", price: 450,
-      label: { de: "Vollkasko ohne Selbstbeteiligung", en: "Full coverage with no excess", ar: "تأمين شامل بدون تحمّل", ru: "Полная страховка без франшизы", fr: "Tous risques sans franchise" } },
     { id: "delivery", price: 750, oneTime: true,
       label: { de: "Lieferung ans Hotel", en: "Delivery to your hotel", ar: "التوصيل إلى الفندق", ru: "Доставка к отелю", fr: "Livraison à l'hôtel" } }
   ],
