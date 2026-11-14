@@ -69,7 +69,7 @@
   }
 
   function money(n) {
-    return n.toLocaleString(langInfo().locale, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " " + C.currency;
+    return Math.round(n).toLocaleString(langInfo().locale, { maximumFractionDigits: 0 }) + "\u00a0" + L(C.currency);
   }
 
   function fillConfig() {
@@ -188,29 +188,54 @@
      ========================================================= */
   var grid = $("#fleet-grid");
 
+  // Ein Fahrzeug ist buchbar, sobald Preise eingetragen sind
+  function bookable(car) { return !!(car && car.prices && car.prices.day); }
+  function carImages(car) { return car.images || (car.image ? [car.image] : []); }
+
   function renderFleet() {
     grid.innerHTML = C.fleet.map(function (car) {
       var cat = L(car.category);
-      var img = car.image
-        ? '<div class="car-img"><img src="' + esc(car.image) + '" alt="' + esc((car.name || cat)) + '" loading="lazy" width="632" height="300"></div>'
+      var imgs = carImages(car);
+      var cover = car.cover || imgs[0];
+      var alt = esc(car.name || cat);
+      var imgTag = cover ? '<img src="' + esc(cover) + '" alt="' + alt + '" loading="lazy" width="960" height="640">' : "";
+      var img = cover
+        ? '<div class="car-img has-photo">' +
+            (imgs.length > 1
+              ? '<button type="button" class="car-gallery-btn" data-gallery="' + car.id + '" aria-label="' + esc(t("car.photos", { n: imgs.length })) + '">' +
+                  imgTag + '<span class="car-photo-count" aria-hidden="true">📷 ' + imgs.length + "</span></button>"
+              : imgTag) +
+          "</div>"
         : '<div class="car-img is-placeholder">' + carSvg(car.type, car.color) + '<span class="car-badge">' + t("car.photoSoon") + "</span></div>";
       var title = car.name
-        ? '<h3><bdi>' + esc(car.name) + '</bdi> <span class="car-similar">' + t("car.similar") + "</span></h3>"
+        ? "<h3><bdi>" + esc(car.name) + "</bdi></h3>"
         : '<h3 class="is-placeholder">' + t("car.placeholder") + "</h3>";
-      return '<article class="car card">' + img +
-        '<div class="car-body">' +
-          '<p class="car-cat">' + cat + "</p>" + title +
-          '<ul class="car-specs">' +
-            '<li title="' + t("car.seats") + '">👤 ' + car.seats + "</li>" +
-            '<li title="' + t("car.bags") + '">🧳 ' + car.bags + "</li>" +
-            '<li title="' + t("car.gearbox") + '">⚙️ ' + t(car.gearbox === "manual" ? "car.manual" : "car.auto") + "</li>" +
-            (car.ac ? "<li>❄️ " + t("car.ac") + "</li>" : "") +
-          "</ul>" +
+      var specs = [];
+      if (car.seats) specs.push('<li title="' + t("car.seats") + '">👤 ' + car.seats + "</li>");
+      if (car.bags) specs.push('<li title="' + t("car.bags") + '">🧳 ' + car.bags + "</li>");
+      if (car.gearbox) specs.push('<li title="' + t("car.gearbox") + '">⚙️ ' + t(car.gearbox === "manual" ? "car.manual" : "car.auto") + "</li>");
+      if (car.ac) specs.push("<li>❄️ " + t("car.ac") + "</li>");
+      var price;
+      if (bookable(car)) {
+        var p = car.prices, tiers = [];
+        if (p.week) tiers.push("<li><span>" + t("tier.week") + "</span><strong>" + money(p.week) + "</strong></li>");
+        if (p.twoWeeks) tiers.push("<li><span>" + t("tier.twoWeeks") + "</span><strong>" + money(p.twoWeeks) + "</strong></li>");
+        if (p.month) tiers.push("<li><span>" + t("tier.month") + "</span><strong>" + money(p.month) + "</strong></li>");
+        price =
           '<div class="car-foot">' +
-            '<p class="car-price"><span>' + t("car.from") + '</span> <strong>' + money(car.priceWeek) + "</strong><span>" + t("car.perDay") + "</span></p>" +
+            '<p class="car-price"><strong>' + money(p.day) + "</strong><span>" + t("car.perDay") + "</span></p>" +
             '<button type="button" class="btn btn-accent btn-small" data-choose="' + car.id + '">' + t("car.choose") + "</button>" +
           "</div>" +
-          '<p class="car-price-note">' + t("car.weekNote", { price: money(car.price), n: C.weekThreshold, week: money(car.priceWeek) }) + "</p>" +
+          (tiers.length ? '<ul class="car-tiers">' + tiers.join("") + "</ul>" : "") +
+          (car.minDays > 1 ? '<p class="car-price-note">' + t("car.minDays", { days: daysText(car.minDays) }) + "</p>" : "");
+      } else {
+        price = '<div class="car-foot"><p class="car-price is-placeholder">' + t("car.pricePending") + "</p></div>";
+      }
+      return '<article class="car card' + (bookable(car) ? "" : " is-placeholder") + '">' + img +
+        '<div class="car-body">' +
+          '<p class="car-cat">' + cat + "</p>" + title +
+          (specs.length ? '<ul class="car-specs">' + specs.join("") + "</ul>" : "") +
+          price +
         "</div></article>";
     }).join("");
   }
@@ -218,8 +243,8 @@
   function renderSelects() {
     $$("[data-fleet-select]").forEach(function (sel) {
       var v = sel.value;
-      sel.innerHTML = C.fleet.map(function (c) {
-        return '<option value="' + c.id + '">' + carLabel(c) + " (" + t("car.from") + " " + money(c.priceWeek) + t("car.perDay") + ")</option>";
+      sel.innerHTML = C.fleet.filter(bookable).map(function (c) {
+        return '<option value="' + c.id + '">' + carLabel(c) + " (" + money(c.prices.day) + t("car.perDay") + ")</option>";
       }).join("");
       if (v) sel.value = v;
     });
@@ -275,11 +300,25 @@
     return d > 0 ? d : 0;
   }
 
+  /* Mietpreis nach Staffel: Tag / Woche / 2 Wochen / Monat.
+     Es gilt der Tagessatz der erreichten Staffel; ist eine höhere Staffel
+     insgesamt günstiger, wird deren Gesamtpreis berechnet. */
+  function rentalPrice(car, n) {
+    var p = car.prices;
+    var tiers = [[1, p.day], [7, p.week], [14, p.twoWeeks], [30, p.month]].filter(function (x) { return x[1]; });
+    var cur = tiers[0];
+    tiers.forEach(function (x) { if (x[0] <= n) cur = x; });
+    var total = cur[1] / cur[0] * n;
+    tiers.forEach(function (x) { if (x[0] > n && x[1] < total) total = x[1]; });
+    return Math.round(total);
+  }
+
   function calc(form) {
     var car = findCar(form.car.value);
     var n = days(form.from.value, form.to.value);
-    if (!car || !n) return null;
-    var rate = n >= C.weekThreshold ? car.priceWeek : car.price;
+    if (!bookable(car) || !n) return null;
+    if (car.minDays && n < car.minDays) return { short: true, car: car, days: n, min: car.minDays };
+    var rental = rentalPrice(car, n);
     var extras = [];
     var extrasSum = 0;
     $$('input[name="extra"]:checked', form).forEach(function (cb) {
@@ -291,8 +330,8 @@
     var fee = 0;
     if (form.pickup) fee += C.locations[form.pickup.value].fee;
     if (form.dropoff) fee += C.locations[form.dropoff.value].fee;
-    return { car: car, days: n, rate: rate, extras: extras, extrasSum: extrasSum, fee: fee,
-             total: rate * n + extrasSum + fee };
+    return { car: car, days: n, rental: rental, extras: extras, extrasSum: extrasSum, fee: fee,
+             total: rental + extrasSum + fee };
   }
 
   var quick = $("#quick-form");
@@ -300,19 +339,23 @@
 
   function updateQuick() {
     var r = calc(quick);
-    $("#quick-total").textContent = r ? money(r.total) + " · " + daysText(r.days) : "–";
+    $("#quick-total").textContent = !r ? "–" : r.short ? t("car.minDays", { days: daysText(r.min) }) : money(r.total) + " · " + daysText(r.days);
   }
 
   function updateBooking() {
     var r = calc(booking);
-    if (!r) {
+    if (!r || r.short) {
       ["car", "days", "rate", "extras", "total"].forEach(function (k) { $("#sum-" + k).textContent = "–"; });
       if (booking.car.value) $("#sum-car").textContent = carLabel(findCar(booking.car.value));
+      if (r && r.short) {
+        $("#sum-days").textContent = daysText(r.days);
+        $("#sum-total").textContent = t("car.minDays", { days: daysText(r.min) });
+      }
       return;
     }
     $("#sum-car").textContent = carLabel(r.car);
     $("#sum-days").textContent = daysText(r.days);
-    $("#sum-rate").textContent = money(r.rate);
+    $("#sum-rate").textContent = money(r.rental);
     var ex = r.extras.map(function (e) { return e.label; });
     if (r.fee) ex.push(t("sum.deliveryFee"));
     $("#sum-extras").textContent = ex.length ? ex.join(t("list.sep")) + " (" + money(r.extrasSum + r.fee) + ")" : t("sum.none");
@@ -375,7 +418,9 @@
     var problems = [];
     if (!booking.name.value.trim()) problems.push(t("err.name"));
     if (!booking.phone.value.trim()) problems.push(t("err.phone"));
-    if (!calc(booking)) problems.push(t("err.dates"));
+    var r = calc(booking);
+    if (!r) problems.push(t("err.dates"));
+    else if (r.short) problems.push(t("err.minDays", { days: daysText(r.min), n: r.min }));
     if (!booking.privacy.checked) problems.push(t("err.privacy"));
     return problems;
   }
@@ -434,6 +479,83 @@
     $("#map").innerHTML = '<iframe title="' + t("map.iframe") + " " + C.company + '" src="https://maps.google.com/maps?q=' + q +
       "&hl=" + hl + '&z=13&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>';
     $("#map").classList.add("map-loaded");
+  });
+
+  /* =========================================================
+     FOTOGALERIE
+     ========================================================= */
+  var lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.hidden = true;
+  lb.setAttribute("role", "dialog");
+  lb.setAttribute("aria-modal", "true");
+  lb.innerHTML =
+    '<button type="button" class="lb-btn lb-close" data-lb="close">×</button>' +
+    '<button type="button" class="lb-btn lb-prev" data-lb="prev">‹</button>' +
+    '<figure class="lb-figure"><img class="lb-img" alt=""><figcaption class="lb-caption"></figcaption></figure>' +
+    '<button type="button" class="lb-btn lb-next" data-lb="next">›</button>';
+  document.body.appendChild(lb);
+  var lbImg = $(".lb-img", lb), lbCap = $(".lb-caption", lb);
+  var lbCar = null, lbIdx = 0, lbReturn = null;
+
+  function lbShow(i) {
+    var imgs = carImages(lbCar);
+    lbIdx = (i + imgs.length) % imgs.length;
+    lbImg.src = imgs[lbIdx];
+    lbImg.alt = (lbCar.name || L(lbCar.category)) + " – " + (lbIdx + 1) + "/" + imgs.length;
+    lbCap.textContent = (lbCar.name || L(lbCar.category)) + " · " + (lbIdx + 1) + " / " + imgs.length;
+    // nächstes Bild vorladen
+    var pre = new Image(); pre.src = imgs[(lbIdx + 1) % imgs.length];
+  }
+  function lbOpen(car, from) {
+    lbCar = car; lbReturn = from;
+    lb.setAttribute("aria-label", t("car.photos", { n: carImages(car).length }));
+    $(".lb-close", lb).setAttribute("aria-label", t("gallery.close"));
+    $(".lb-prev", lb).setAttribute("aria-label", t("gallery.prev"));
+    $(".lb-next", lb).setAttribute("aria-label", t("gallery.next"));
+    lbShow(0);
+    lb.hidden = false;
+    document.body.classList.add("no-scroll");
+    $(".lb-close", lb).focus();
+  }
+  function lbClose() {
+    lb.hidden = true;
+    document.body.classList.remove("no-scroll");
+    if (lbReturn) lbReturn.focus();
+  }
+  grid.addEventListener("click", function (e) {
+    var g = e.target.closest("[data-gallery]");
+    if (g) lbOpen(findCar(g.getAttribute("data-gallery")), g);
+  });
+  lb.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-lb]");
+    if (b) {
+      var a = b.getAttribute("data-lb");
+      if (a === "close") lbClose(); else lbShow(lbIdx + (a === "next" ? 1 : -1));
+    } else if (e.target === lb) {
+      lbClose();
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (lb.hidden) return;
+    var rtl = root.dir === "rtl";
+    if (e.key === "Escape") lbClose();
+    else if (e.key === "ArrowRight") lbShow(lbIdx + (rtl ? -1 : 1));
+    else if (e.key === "ArrowLeft") lbShow(lbIdx + (rtl ? 1 : -1));
+    else if (e.key === "Tab") {
+      // Fokus im Dialog halten
+      var f = $$("button", lb), first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  var touchX = null;
+  lb.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) lbShow(lbIdx + (dx < 0 ? 1 : -1) * (root.dir === "rtl" ? -1 : 1));
+    touchX = null;
   });
 
   /* =========================================================

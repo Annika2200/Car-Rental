@@ -155,7 +155,6 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
 .car { overflow: hidden; display: flex; flex-direction: column; box-shadow: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
 .car:hover { transform: translateY(-5px); border-color: rgba(81,158,67,.35); box-shadow: var(--shadow); }
 .car-img { position: relative; background: radial-gradient(70% 80% at 50% 85%, #3a332b 0%, var(--surface-2) 55%, var(--surface) 100%); padding: 28px 28px 10px; border-bottom: 1px solid var(--line); }
-.car-img img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 10px; }
 .car-img.is-placeholder svg { opacity: .55; }
 .car-badge { position: absolute; top: 14px; inset-inline-start: 14px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: rgba(15,13,11,.7); border: 1px dashed var(--line-strong); border-radius: 999px; padding: 4px 10px; }
 .car h3.is-placeholder { color: var(--muted); font-weight: 600; font-style: italic; }
@@ -170,6 +169,39 @@ legend { font-weight: 800; color: #fff; font-size: 1.05rem; margin-bottom: 14px;
 .car-price strong { font-size: 1.6rem; color: var(--accent); }
 .car-price span { color: var(--muted); font-size: .85rem; }
 .car-price-note { font-size: .78rem; color: var(--muted); margin: 10px 0 0; }
+
+/* Fahrzeugkarte: Foto, Galerie, Preisstaffel */
+.car-img { aspect-ratio: 3 / 2; display: grid; place-items: center; }
+.car-img.has-photo { padding: 0; background: var(--surface-2); overflow: hidden; }
+.car-img.has-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.car-gallery-btn { all: unset; display: block; width: 100%; height: 100%; position: relative; cursor: zoom-in; }
+.car-gallery-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.car:hover .car-img.has-photo img { transform: scale(1.03); }
+.car-photo-count { position: absolute; bottom: 12px; inset-inline-end: 12px; font-size: .78rem; font-weight: 700; color: #fff; background: rgba(15,13,11,.72); border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 10px; backdrop-filter: blur(6px); }
+.car-tiers { list-style: none; padding: 12px 0 0; margin: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; font-size: .9rem; }
+.car-tiers li { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); }
+.car-tiers strong { color: var(--text); font-weight: 700; }
+.car-price.is-placeholder { color: var(--muted); font-style: italic; }
+.car.is-placeholder { opacity: .78; }
+
+/* Lightbox */
+.no-scroll { overflow: hidden; }
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(8,7,6,.97); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; padding: 56px 12px 24px; }
+.lightbox[hidden] { display: none; }
+.lb-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; height: 100%; justify-content: center; }
+.lb-img { max-width: 100%; max-height: calc(100vh - 140px); object-fit: contain; border-radius: 12px; box-shadow: var(--shadow); }
+.lb-caption { color: var(--muted); font-size: .9rem; }
+.lb-btn { font: inherit; font-size: 2rem; line-height: 1; color: #fff; background: rgba(255,255,255,.08); border: 1px solid var(--line-strong); border-radius: 50%; width: 52px; height: 52px; display: grid; place-items: center; cursor: pointer; transition: background .2s; }
+.lb-btn:hover { background: rgba(255,255,255,.18); }
+.lb-close { position: absolute; top: 12px; inset-inline-end: 12px; width: 44px; height: 44px; font-size: 1.8rem; }
+[dir="rtl"] .lb-prev, [dir="rtl"] .lb-next { transform: scaleX(-1); }
+@media (max-width: 640px) {
+  .lightbox { grid-template-columns: 1fr; padding: 60px 8px 80px; }
+  .lb-prev, .lb-next { position: absolute; bottom: 16px; }
+  .lb-prev { inset-inline-start: calc(50% - 64px); }
+  .lb-next { inset-inline-end: calc(50% - 64px); }
+  .lb-img { max-height: calc(100vh - 170px); }
+}
 
 /* ===== Steps ===== */
 .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }

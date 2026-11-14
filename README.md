@@ -20,16 +20,26 @@ Nach etwa einer Minute ist die Seite unter `https://<benutzername>.github.io/Car
 
 ## Fahrzeuge eintragen
 
-Die Flotte besteht im Moment aus **Platzhaltern**. Kategorien und Preise sind Beispielwerte, auf der Seite steht „Modell folgt“ mit einer Grafik.
-Für jedes echte Fahrzeug in `js/config.js` bei der passenden Kategorie eintragen:
+Fahrzeuge stehen in `js/config.js` unter `fleet`. Ein echtes Fahrzeug sieht so aus:
 
 ```js
-name: "Hyundai Accent",
-image: "img/cars/accent.jpg",
+{
+  id: "avante", type: "sedan",
+  category: { de: "Limousine", en: "Saloon", ... },
+  name: "Hyundai Avante",
+  cover: "img/cars/avante-card.jpg",            // Kartenbild (Querformat 3:2)
+  images: ["img/cars/avante-1.jpg", ...],        // alle Fotos für die Galerie
+  seats: 5, gearbox: "auto", ac: true,
+  minDays: 3,                                    // Mindestmietdauer
+  prices: { day: 1600, week: 10000, twoWeeks: 18500, month: 28000 }  // in LE
+}
 ```
 
-Fotos in den Ordner `img/cars/` legen, am besten im Querformat (ca. 2:1, mindestens 800 px breit).
-Preise, Sitze, Gepäck und Getriebe in derselben Datei anpassen. Nicht benötigte Kategorien löschen.
+**Preisberechnung:** Es gilt der Tagessatz der erreichten Stufe (Tag, Woche, 2 Wochen, Monat). Ist eine höhere Stufe insgesamt günstiger, wird deren Preis berechnet.
+Beispiel Avante: 10 Tage = 10 × (10.000 / 7) = 14.286 LE, 25 Tage = 28.000 LE (Monatspreis ist günstiger).
+
+Fahrzeuge ohne `name` und `prices` sind Platzhalter („Modell folgt“, „Preis folgt“). Sie erscheinen nicht im Preisrechner.
+Fotos in `img/cars/` ablegen. Extras und Zustellgebühren in `config.js` sind noch Beispielwerte in LE.
 
 ## Sprachen
 
