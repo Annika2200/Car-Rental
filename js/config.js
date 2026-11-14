@@ -102,7 +102,7 @@ window.SITE_CONFIG = {
   // gearbox: "auto" (Automatik) | "manual" (Schaltung)
   fleet: [
     {
-      id: "economy", name: "Hyundai i10", type: "small", color: "#e8b04b",
+      id: "economy", name: "Hyundai i10", type: "small", color: "#5bbf3f",
       category: { de: "Kleinwagen", en: "Small car", ar: "سيارة صغيرة", ru: "Малый класс", fr: "Petite voiture" },
       seats: 4, bags: 2, gearbox: "auto", ac: true,
       price: 25, priceWeek: 22
@@ -120,7 +120,7 @@ window.SITE_CONFIG = {
       price: 38, priceWeek: 34
     },
     {
-      id: "suv", name: "Kia Sportage", type: "suv", color: "#2f4858",
+      id: "suv", name: "Kia Sportage", type: "suv", color: "#9aa3a8",
       category: { de: "SUV", en: "SUV", ar: "SUV", ru: "Кроссовер (SUV)", fr: "SUV" },
       seats: 5, bags: 4, gearbox: "auto", ac: true,
       price: 55, priceWeek: 49
