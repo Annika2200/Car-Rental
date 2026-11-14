@@ -328,8 +328,8 @@
       extrasSum += cost;
     });
     var fee = 0;
-    if (form.pickup) fee += C.locations[form.pickup.value].fee;
-    if (form.dropoff) fee += C.locations[form.dropoff.value].fee;
+    // Zustellgebühr gilt einmal für Bringen und Abholen zusammen (höherer Ort zählt)
+    fee = Math.max(form.pickup ? C.locations[form.pickup.value].fee : 0, form.dropoff ? C.locations[form.dropoff.value].fee : 0);
     return { car: car, days: n, rental: rental, extras: extras, extrasSum: extrasSum, fee: fee,
              total: rental + extrasSum + fee };
   }
