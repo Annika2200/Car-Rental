@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="de" dir="ltr" class="i18n-loading">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    /* Sprache sofort setzen, damit die Seite nicht kurz auf Deutsch aufblitzt */
+    (function () {
+      var supported = ["de", "en", "ar", "ru", "fr"], l = null;
+      try { l = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+      if (supported.indexOf(l) < 0) { try { l = localStorage.getItem("hd-lang"); } catch (e) {} }
+      if (supported.indexOf(l) < 0) { l = (navigator.language || "de").slice(0, 2).toLowerCase(); }
+      if (supported.indexOf(l) < 0) { l = "de"; }
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+      if (l === "de") document.documentElement.classList.remove("i18n-loading");
+      setTimeout(function () { document.documentElement.classList.remove("i18n-loading"); }, 1500);
+    })();
+  </script>
+  <title>Hurghada Drive – Mietwagen in Hurghada, El Gouna &amp; am Roten Meer</title>
+  <meta name="description" content="Hurghada Drive: Mietwagen in Hurghada mit Übergabe am Flughafen, Hotel oder Ferienwohnung. Faire Festpreise, saubere Automatik-Fahrzeuge. Jetzt per WhatsApp anfragen.">
+  <meta name="theme-color" content="#0f0d0b">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="canonical" href="https://www.hurghada-drive.com/">
+  <link rel="alternate" hreflang="de" href="https://www.hurghada-drive.com/?lang=de">
+  <link rel="alternate" hreflang="en" href="https://www.hurghada-drive.com/?lang=en">
+  <link rel="alternate" hreflang="ar" href="https://www.hurghada-drive.com/?lang=ar">
+  <link rel="alternate" hreflang="ru" href="https://www.hurghada-drive.com/?lang=ru">
+  <link rel="alternate" hreflang="fr" href="https://www.hurghada-drive.com/?lang=fr">
+  <link rel="alternate" hreflang="x-default" href="https://www.hurghada-drive.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hurghada Drive – Mietwagen am Roten Meer">
+  <meta property="og:description" content="Mietwagen in Hurghada mit Übergabe am Flughafen oder direkt am Hotel. Faire Festpreise, ohne versteckte Kosten.">
+  <meta property="og:image" content="https://www.hurghada-drive.com/img/og-image.png">
+  <meta property="og:locale" content="de_DE">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRental",
+    "name": "Hurghada Drive",
+    "url": "https://www.hurghada-drive.com/",
+    "telephone": "+201000000000",
+    "email": "info@hurghada-drive.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sheraton Road",
+      "addressLocality": "Hurghada",
+      "addressRegion": "Red Sea Governorate",
+      "addressCountry": "EG"
+    },
+    "areaServed": ["Hurghada", "El Gouna", "Sahl Hasheesh", "Makadi Bay", "Soma Bay", "Safaga"],
+    "availableLanguage": ["German", "English", "Arabic", "Russian", "French"],
+    "openingHours": "Mo-Su 08:00-22:00"
+  }
+  </script>
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="skip">Zum Inhalt springen</a>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo" aria-label="Hurghada Drive">
+      <img class="logo-img" src="img/logo-small.jpg" width="240" height="221" alt="Hurghada Drive – Car Rental &amp; Private Transfer">
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Navigation">
+      <a href="#flotte" data-i18n="nav.fleet">Flotte</a>
+      <a href="#ablauf" data-i18n="nav.how">So funktioniert's</a>
+      <a href="#orte" data-i18n="nav.locations">Übergabeorte</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+      <a href="#buchen" class="btn btn-small btn-accent" data-i18n="nav.cta">Jetzt anfragen</a>
+    </nav>
+
+    <div class="lang-switch" id="lang-switch">
+      <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" data-i18n-attr="aria-label:lang.label" aria-label="Sprache">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm-9 9h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+        <span class="lang-current">DE</span>
+        <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      </button>
+      <ul class="lang-menu" id="lang-menu" hidden>
+        <li><button type="button" data-lang="de" lang="de">Deutsch</button></li>
+        <li><button type="button" data-lang="en" lang="en">English</button></li>
+        <li><button type="button" data-lang="ar" lang="ar">العربية</button></li>
+        <li><button type="button" data-lang="ru" lang="ru">Русский</button></li>
+        <li><button type="button" data-lang="fr" lang="fr">Français</button></li>
+      </ul>
+    </div>
+
+    <button class="nav-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0b0a09"/>
+            <stop offset=".6" stop-color="#1c1610"/>
+            <stop offset="1" stop-color="#3a2618"/>
+          </linearGradient>
+          <radialGradient id="glow" cx=".68" cy=".14" r=".3">
+            <stop offset="0" stop-color="#519e43" stop-opacity=".16"/>
+            <stop offset="1" stop-color="#519e43" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glow2" cx=".2" cy=".95" r=".5">
+            <stop offset="0" stop-color="#519e43" stop-opacity=".16"/>
+            <stop offset="1" stop-color="#519e43" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1440" height="640" fill="url(#sky)"/>
+        <rect width="1440" height="640" fill="url(#glow)"/>
+        <rect width="1440" height="640" fill="url(#glow2)"/>
+        <g fill="#fff" opacity=".55">
+          <circle cx="120" cy="80" r="1.4"/><circle cx="340" cy="140" r="1"/><circle cx="520" cy="60" r="1.6"/><circle cx="700" cy="120" r="1"/>
+          <circle cx="860" cy="50" r="1.3"/><circle cx="1010" cy="150" r="1"/><circle cx="1300" cy="90" r="1.5"/><circle cx="1380" cy="200" r="1"/>
+          <circle cx="250" cy="230" r="1"/><circle cx="620" cy="210" r="1.2"/><circle cx="1220" cy="240" r="1"/><circle cx="60" cy="300" r="1.1"/>
+        </g>
+        <path d="M905 28a50 50 0 1 0 33 92 42 42 0 1 1-33-92z" fill="#f1ece4" opacity=".95"/>
+        <path d="M0 410 C140 340 260 330 380 380 S600 300 760 360 S1020 300 1160 360 S1360 330 1440 350 V640 H0Z" fill="#1e1914"/>
+        <path d="M0 410 C140 340 260 330 380 380 S600 300 760 360 S1020 300 1160 360 S1360 330 1440 350" fill="none" stroke="#f1ece4" stroke-opacity=".35" stroke-width="3"/>
+        <path d="M0 470 C200 430 420 470 640 440 S1000 470 1200 445 S1380 455 1440 450 V640 H0Z" fill="#17130f"/>
+        <g fill="#519e43">
+          <path d="M80 470 C200 448 330 450 430 462 C330 462 210 468 80 482Z" opacity=".75"/>
+          <path d="M980 452 C1100 432 1240 436 1360 448 C1240 450 1110 456 980 466Z" opacity=".6"/>
+          <path d="M1040 482 C1140 470 1230 470 1320 478 C1230 480 1140 484 1040 492Z" opacity=".45"/>
+        </g>
+        <path d="M0 540 H1440 V640 H0Z" fill="#121010"/>
+        <path d="M0 588 H1440" stroke="#519e43" stroke-opacity=".55" stroke-width="4" stroke-dasharray="44 34"/>
+      </svg>
+    </div>
+
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Mietwagen am Roten Meer</p>
+        <h1 data-i18n="hero.title">Dein Auto für Hurghada wartet bereits auf dich.</h1>
+        <p class="lead" data-i18n="hero.lead">Übergabe direkt am Flughafen, deinem Hotel oder deiner Ferienwohnung. Wir haben faire Festpreise, saubere und gut gewartete Autos mit Klimaanlage. Du fragst per WhatsApp an und wir melden uns so schnell wie möglich bei dir zurück.</p>
+        <div class="hero-cta">
+          <a href="#buchen" class="btn btn-accent btn-large" data-i18n="hero.cta">Auto anfragen</a>
+          <a href="#" class="btn btn-ghost btn-large" data-whatsapp>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+            <span data-i18n="wa">WhatsApp</span>
+          </a>
+        </div>
+        <ul class="hero-usps">
+          <li data-i18n="hero.usp1">✓ Übergabe am Wunschort</li>
+          <li data-i18n="hero.usp2">✓ Keine versteckten Kosten</li>
+        </ul>
+      </div>
+
+      <!-- Schnellanfrage -->
+      <form class="quick-form card" id="quick-form" novalidate>
+        <h2 data-i18n="quick.title">Preis berechnen</h2>
+        <label><span data-i18n="f.pickup">Abholort</span>
+          <select name="pickup" data-locations required></select>
+        </label>
+        <div class="row-2">
+          <label><span data-i18n="f.from">Abholung</span>
+            <input type="date" name="from" required>
+          </label>
+          <label><span data-i18n="f.to">Rückgabe</span>
+            <input type="date" name="to" required>
+          </label>
+        </div>
+        <label><span data-i18n="f.car">Fahrzeug</span>
+          <select name="car" data-fleet-select></select>
+        </label>
+        <p class="quick-price" aria-live="polite"><span data-i18n="quick.est">Geschätzter Preis</span><strong id="quick-total">–</strong></p>
+        <button type="submit" class="btn btn-accent btn-block" data-i18n="quick.submit">Weiter zur Anfrage</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= VORTEILE ================= -->
+  <section class="section features">
+    <div class="container grid-4">
+      <article class="feature">
+        <div class="feature-icon" aria-hidden="true">✈️</div>
+        <h3 data-i18n="feat.1t">Übergabe am Flughafen</h3>
+        <p data-i18n="feat.1d">Wir warten mit Namensschild in der Ankunftshalle, auch bei Landungen mitten in der Nacht.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon" aria-hidden="true">💶</div>
+        <h3 data-i18n="feat.2t">Festpreise</h3>
+        <p data-i18n="feat.2d">Der Preis, den wir dir nennen, ist der Endpreis. Ohne Zusatzgebühren am Schalter.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon" aria-hidden="true">✨</div>
+        <h3 data-i18n="feat.3t">Gepflegte Autos</h3>
+        <p data-i18n="feat.3d">Saubere und gut gewartete Autos, alle mit Klimaanlage.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon" aria-hidden="true">💬</div>
+        <h3 data-i18n="feat.4t">Persönlich erreichbar</h3>
+        <p data-i18n="feat.4d">Während der Miete erreichst du uns per WhatsApp – auf Deutsch, Englisch und Arabisch.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= FLOTTE ================= -->
+  <section class="section section-alt" id="flotte">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="fleet.eyebrow">Unsere Flotte</p>
+        <h2 data-i18n="fleet.title">Für jede Reise das passende Auto</h2>
+        <p data-i18n="fleet.lead">Alle Preise inklusive 150 Freikilometern pro Tag. Je länger du mietest, desto günstiger wird es: Wir haben Wochen-, Zwei-Wochen- und Monatspreise.</p>
+      </header>
+      <div class="fleet-grid" id="fleet-grid"><!-- wird per JS aus config.js befüllt --></div>
+      <p class="note" data-i18n="fleet.note">Klicke auf ein Foto, um alle Bilder des Fahrzeugs zu sehen.</p>
+    </div>
+  </section>
+
+  <!-- ================= ABLAUF ================= -->
+  <section class="section" id="ablauf">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="how.eyebrow">So funktioniert's</p>
+        <h2 data-i18n="how.title">In 3 Schritten zum Mietwagen</h2>
+      </header>
+      <ol class="steps">
+        <li data-n="1">
+          <span class="step-num">1</span>
+          <h3 data-i18n="how.1t">Anfrage senden</h3>
+          <p data-i18n="how.1d">Fahrzeug, Zeitraum und Abholort auswählen und per WhatsApp oder E-Mail abschicken.</p>
+        </li>
+        <li data-n="2">
+          <span class="step-num">2</span>
+          <h3 data-i18n="how.2t">Bestätigung erhalten</h3>
+          <p data-i18n="how.2d">Wir prüfen die Verfügbarkeit und schicken dir eine verbindliche Bestätigung mit Endpreis.</p>
+        </li>
+        <li data-n="3">
+          <span class="step-num">3</span>
+          <h3 data-i18n="how.3t">Losfahren</h3>
+          <p data-i18n="how.3d">Bei der Übergabe zeigst du Führerschein und Reisepass, unterschreibst den Vertrag und fährst los.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= BUCHUNG ================= -->
+  <section class="section section-dark" id="buchen">
+    <div class="container booking">
+      <div class="booking-info">
+        <p class="eyebrow" data-i18n="book.eyebrow">Anfrage</p>
+        <h2 data-i18n="book.title">Unverbindlich anfragen</h2>
+        <p data-i18n="book.lead">Füll das Formular aus. Deine Anfrage öffnet sich als fertige Nachricht in WhatsApp oder in deinem E-Mail-Programm, du musst sie nur noch absenden. Erst mit unserer Bestätigung ist die Buchung verbindlich.</p>
+        <div class="summary card" aria-live="polite">
+          <h3 data-i18n="sum.title">Deine Übersicht</h3>
+          <dl>
+            <dt data-i18n="sum.car">Fahrzeug</dt><dd id="sum-car">–</dd>
+            <dt data-i18n="sum.days">Mietdauer</dt><dd id="sum-days">–</dd>
+            <dt data-i18n="sum.rate">Mietpreis</dt><dd id="sum-rate">–</dd>
+            <dt data-i18n="sum.extras">Extras</dt><dd id="sum-extras">–</dd>
+          </dl>
+          <p class="sum-total"><span data-i18n="sum.total">Geschätzter Gesamtpreis</span><strong id="sum-total">–</strong></p>
+          <p class="small" data-i18n="sum.note">Zahlung bei Übergabe in bar (EUR, USD, EGP) oder mit Karte. Kaution je nach Fahrzeug 150–500 €.</p>
+        </div>
+      </div>
+
+      <form class="booking-form card" id="booking-form" novalidate>
+        <fieldset>
+          <legend data-i18n="leg.vehicle">Fahrzeug &amp; Zeitraum</legend>
+          <label><span data-i18n="f.car">Fahrzeug</span>
+            <select name="car" data-fleet-select required></select>
+          </label>
+          <div class="row-2">
+            <label><span data-i18n="f.pickup">Abholort</span>
+              <select name="pickup" data-locations required></select>
+            </label>
+            <label><span data-i18n="f.dropoff">Rückgabeort</span>
+              <select name="dropoff" data-locations required></select>
+            </label>
+          </div>
+          <div class="row-2">
+            <label><span data-i18n="f.from">Abholung</span>
+              <input type="date" name="from" required>
+            </label>
+            <label><span data-i18n="f.time">Uhrzeit</span>
+              <input type="time" name="fromTime" value="10:00" required>
+            </label>
+          </div>
+          <div class="row-2">
+            <label><span data-i18n="f.to">Rückgabe</span>
+              <input type="date" name="to" required>
+            </label>
+            <label><span data-i18n="f.time">Uhrzeit</span>
+              <input type="time" name="toTime" value="10:00" required>
+            </label>
+          </div>
+          <label><span data-i18n="f.flight">Flugnummer</span> <span class="optional" data-i18n="f.optFlight">(optional, bei Flughafen-Übergabe)</span>
+            <input type="text" name="flight" placeholder="z. B. DE1234" data-i18n-attr="placeholder:f.flightPh" autocomplete="off">
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="leg.extras">Extras</legend>
+          <div class="extras" id="extras"><!-- per JS --></div>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="leg.you">Deine Daten</legend>
+          <label><span data-i18n="f.name">Vor- und Nachname</span>
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <div class="row-2">
+            <label><span data-i18n="f.phone">Telefon / WhatsApp</span>
+              <input type="tel" name="phone" autocomplete="tel" dir="ltr" required>
+            </label>
+            <label><span data-i18n="f.email">E-Mail</span>
+              <input type="email" name="email" autocomplete="email" dir="ltr">
+            </label>
+          </div>
+          <label><span data-i18n="f.hotel">Hotel / Unterkunft</span> <span class="optional" data-i18n="f.optional">(optional)</span>
+            <input type="text" name="hotel">
+          </label>
+          <label><span data-i18n="f.message">Nachricht</span> <span class="optional" data-i18n="f.optional">(optional)</span>
+            <textarea name="message" rows="3"></textarea>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="privacy" required>
+            <span data-i18n-html="f.privacy">Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.</span>
+          </label>
+        </fieldset>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-whatsapp btn-block" data-channel="whatsapp" data-i18n="btn.wa">Per WhatsApp anfragen</button>
+          <button type="submit" class="btn btn-outline btn-block" data-channel="email" data-i18n="btn.mail">Per E-Mail anfragen</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= ORTE ================= -->
+  <section class="section" id="orte">
+    <div class="container">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="loc.eyebrow">Übergabeorte</p>
+        <h2 data-i18n="loc.title">Wir bringen das Auto zu dir</h2>
+        <p data-i18n="loc.lead">Übergabe und Rückgabe sind an folgenden Orten möglich. Andere Orte am Roten Meer auf Anfrage.</p>
+      </header>
+      <ul class="locations" id="locations-list"><!-- per JS --></ul>
+    </div>
+  </section>
+
+  <!-- ================= VORAUSSETZUNGEN ================= -->
+  <section class="section section-alt">
+    <div class="container grid-2">
+      <div>
+        <p class="eyebrow" data-i18n="req.eyebrow">Voraussetzungen</p>
+        <h2 data-i18n="req.title">Was du brauchst</h2>
+        <ul class="checklist">
+          <li data-i18n="req.1">Mindestalter 21 Jahre (SUV &amp; 4x4: 25 Jahre)</li>
+          <li data-i18n="req.2">Führerschein seit mindestens 2 Jahren</li>
+          <li data-i18n="req.3">Internationaler Führerschein empfohlen (zusätzlich zum nationalen)</li>
+          <li data-i18n="req.4">Gültiger Reisepass</li>
+          <li data-i18n="req.5">Kaution in bar oder per Kreditkarte</li>
+          <li data-i18n="req.6">Nutzung nur innerhalb des Gouvernements Rotes Meer</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" data-i18n="inc.eyebrow">Inklusive</p>
+        <h2 data-i18n="inc.title">Im Preis enthalten</h2>
+        <ul class="checklist">
+          <li data-i18n="inc.2">150 Freikilometer pro Tag</li>
+          <li data-i18n="inc.3">Klimaanlage in jedem Fahrzeug</li>
+          <li data-i18n="inc.4">Pannenhilfe rund um die Uhr</li>
+          <li data-i18n="inc.5">Übergabe am Flughafen Hurghada</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq">
+    <div class="container narrow">
+      <header class="section-head">
+        <p class="eyebrow" data-i18n="faq.eyebrow">FAQ</p>
+        <h2 data-i18n="faq.title">Häufige Fragen</h2>
+      </header>
+      <div class="faq">
+        <details>
+          <summary data-i18n="faq.q1">Brauche ich einen internationalen Führerschein?</summary>
+          <p data-i18n="faq.a1">In Ägypten wird ein internationaler Führerschein empfohlen und bei Polizeikontrollen häufig verlangt. Bring deinen nationalen und den internationalen Führerschein mit. Den internationalen bekommst du in Deutschland günstig bei der Führerscheinstelle.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">Wie funktioniert die Übergabe am Flughafen?</summary>
+          <p data-i18n="faq.a2">Du schickst uns deine Flugnummer. Unser Mitarbeiter wartet mit einem Schild mit deinem Namen in der Ankunftshalle des Flughafens Hurghada (HRG) und begleitet dich zum Auto. Bei Verspätungen warten wir ohne Aufpreis.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">Wie hoch ist die Kaution?</summary>
+          <p data-i18n="faq.a3">Je nach Fahrzeugklasse 150 € bis 500 €. Sie wird bei der Übergabe in bar hinterlegt oder auf der Kreditkarte geblockt und bei der Rückgabe sofort zurückgegeben, wenn das Auto unbeschädigt ist.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">Kann ich kostenlos stornieren?</summary>
+          <p data-i18n="faq.a4">Ja, bis 48 Stunden vor Mietbeginn kostenlos. Danach berechnen wir eine Tagesmiete.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">Wo darf ich mit dem Auto fahren?</summary>
+          <p data-i18n="faq.a5">Das Auto darf nur innerhalb des Gouvernements Rotes Meer genutzt werden, zum Beispiel in Hurghada, El Gouna, Safaga, El Quseir und Marsa Alam. Fahrten außerhalb, etwa nach Luxor oder Kairo, sind nicht erlaubt.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">Wie ist die Tankregelung?</summary>
+          <p data-i18n="faq.a6">Voll zu voll: Du bekommst das Auto vollgetankt und gibst es vollgetankt zurück. Benzin ist in Ägypten günstig.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q7">Wie bezahle ich?</summary>
+          <p data-i18n="faq.a7">Bei der Übergabe in bar (Euro, US-Dollar oder Ägyptische Pfund) oder mit Kreditkarte. Eine Anzahlung ist nicht nötig.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KONTAKT ================= -->
+  <section class="section section-alt" id="kontakt">
+    <div class="container grid-2 contact">
+      <div>
+        <p class="eyebrow" data-i18n="contact.eyebrow">Kontakt</p>
+        <h2 data-i18n="contact.title">Wir sind für dich da</h2>
+        <p data-i18n="contact.lead">Am schnellsten erreichst du uns per WhatsApp. Wir antworten in der Regel innerhalb einer Stunde.</p>
+        <ul class="contact-list">
+          <li><span aria-hidden="true">📱</span><a href="#" data-whatsapp><span data-i18n="wa">WhatsApp</span>: <bdi data-config="phoneDisplay"></bdi></a></li>
+          <li><span aria-hidden="true">📞</span><a href="#" data-phone><bdi data-config="phoneDisplay"></bdi></a></li>
+          <li><span aria-hidden="true">✉️</span><a href="#" data-email><bdi data-config="email"></bdi></a></li>
+          <li><span aria-hidden="true">📍</span><span data-config="address"></span></li>
+          <li><span aria-hidden="true">🕗</span><span data-config="openingHours"></span></li>
+        </ul>
+      </div>
+      <div class="map-placeholder card" id="map">
+        <p><strong data-i18n="map.title">Karte</strong></p>
+        <p data-i18n="map.text">Die Google-Maps-Karte wird erst nach deiner Zustimmung geladen. Dabei werden Daten an Google übertragen.</p>
+        <button type="button" class="btn btn-outline" id="load-map" data-i18n="map.btn">Karte laden</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img class="footer-logo" src="img/logo.jpg" width="600" height="553" alt="Hurghada Drive – Car Rental &amp; Private Transfer">
+      <p data-i18n="footer.tag">Mietwagen in Hurghada, El Gouna, Sahl Hasheesh, Makadi Bay und Soma Bay.</p>
+    </div>
+    <nav aria-label="Legal">
+      <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+      <a href="datenschutz.html" data-i18n="footer.privacy">Datenschutz</a>
+      <a href="agb.html" data-i18n="footer.terms">Mietbedingungen</a>
+    </nav>
+    <p class="copyright">© <span id="year"></span> Hurghada Drive</p>
+  </div>
+</footer>
+
+<a href="#" class="whatsapp-float" data-whatsapp data-i18n-attr="aria-label:wa.float" aria-label="WhatsApp-Chat öffnen">
+  <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
+</a>
+
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
