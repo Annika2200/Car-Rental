@@ -189,6 +189,8 @@
   var grid = $("#fleet-grid");
 
   // Ein Fahrzeug ist buchbar, sobald Preise eingetragen sind
+  function icon(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-' + name + '"/></svg>'; }
+
   function bookable(car) { return !!(car && car.prices && car.prices.day); }
   function carImages(car) { return car.images || (car.image ? [car.image] : []); }
 
@@ -203,7 +205,7 @@
         ? '<div class="car-img has-photo">' +
             (imgs.length > 1
               ? '<button type="button" class="car-gallery-btn" data-gallery="' + car.id + '" aria-label="' + esc(t("car.photos", { n: imgs.length })) + '">' +
-                  imgTag + '<span class="car-photo-count" aria-hidden="true">📷 ' + imgs.length + "</span></button>"
+                  imgTag + '<span class="car-photo-count" aria-hidden="true">' + icon("camera") + imgs.length + "</span></button>"
               : imgTag) +
           "</div>"
         : '<div class="car-img is-placeholder">' + carSvg(car.type, car.color) + '<span class="car-badge">' + t("car.photoSoon") + "</span></div>";
@@ -211,10 +213,10 @@
         ? "<h3><bdi>" + esc(car.name) + "</bdi></h3>"
         : '<h3 class="is-placeholder">' + t("car.placeholder") + "</h3>";
       var specs = [];
-      if (car.seats) specs.push('<li title="' + t("car.seats") + '">👤 ' + car.seats + "</li>");
-      if (car.bags) specs.push('<li title="' + t("car.bags") + '">🧳 ' + car.bags + "</li>");
-      if (car.gearbox) specs.push('<li title="' + t("car.gearbox") + '">⚙️ ' + t(car.gearbox === "manual" ? "car.manual" : "car.auto") + "</li>");
-      if (car.ac) specs.push("<li>❄️ " + t("car.ac") + "</li>");
+      if (car.seats) specs.push('<li title="' + t("car.seats") + '">' + icon("user") + car.seats + "</li>");
+      if (car.bags) specs.push('<li title="' + t("car.bags") + '">' + icon("bag") + car.bags + "</li>");
+      if (car.gearbox) specs.push('<li title="' + t("car.gearbox") + '">' + icon("gear") + t(car.gearbox === "manual" ? "car.manual" : "car.auto") + "</li>");
+      if (car.ac) specs.push("<li>" + icon("snow") + t("car.ac") + "</li>");
       var price;
       if (bookable(car)) {
         var p = car.prices, tiers = [];
@@ -414,16 +416,35 @@
     return d.toLocaleDateString(langInfo().locale, { weekday: "short", day: "2-digit", month: "2-digit", year: "numeric" });
   }
 
+  function mark(field, bad) {
+    if (bad) field.setAttribute("aria-invalid", "true"); else field.removeAttribute("aria-invalid");
+  }
+
   function validate() {
     var problems = [];
+    var r = calc(booking);
+    mark(booking.name, !booking.name.value.trim());
+    mark(booking.phone, !booking.phone.value.trim());
+    mark(booking.to, !r || !!r.short);
+    mark(booking.privacy, !booking.privacy.checked);
     if (!booking.name.value.trim()) problems.push(t("err.name"));
     if (!booking.phone.value.trim()) problems.push(t("err.phone"));
-    var r = calc(booking);
     if (!r) problems.push(t("err.dates"));
     else if (r.short) problems.push(t("err.minDays", { days: daysText(r.min), n: r.min }));
     if (!booking.privacy.checked) problems.push(t("err.privacy"));
     return problems;
   }
+
+  // Markierung verschwindet, sobald das Feld korrigiert wird
+  booking.addEventListener("input", function (e) {
+    if (e.target.getAttribute && e.target.getAttribute("aria-invalid")) validate();
+  });
+  booking.addEventListener("change", function () {
+    if (booking.querySelector("[aria-invalid]")) {
+      var p = validate(), err = $("#form-error");
+      if (!p.length) err.hidden = true; else if (!err.hidden) err.textContent = t("err.prefix") + p.join(t("list.sep")) + ".";
+    }
+  });
 
   booking.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -432,6 +453,8 @@
     if (problems.length) {
       err.textContent = t("err.prefix") + problems.join(t("list.sep")) + ".";
       err.hidden = false;
+      var first = booking.querySelector("[aria-invalid]");
+      if (first) first.focus();
       return;
     }
     err.hidden = true;
@@ -490,10 +513,10 @@
   lb.setAttribute("role", "dialog");
   lb.setAttribute("aria-modal", "true");
   lb.innerHTML =
-    '<button type="button" class="lb-btn lb-close" data-lb="close">×</button>' +
-    '<button type="button" class="lb-btn lb-prev" data-lb="prev">‹</button>' +
+    '<button type="button" class="lb-btn lb-close" data-lb="close">' + icon("x") + '</button>' +
+    '<button type="button" class="lb-btn lb-prev" data-lb="prev">' + icon("left") + '</button>' +
     '<figure class="lb-figure"><img class="lb-img" alt=""><figcaption class="lb-caption"></figcaption></figure>' +
-    '<button type="button" class="lb-btn lb-next" data-lb="next">›</button>';
+    '<button type="button" class="lb-btn lb-next" data-lb="next">' + icon("right") + '</button>';
   document.body.appendChild(lb);
   var lbImg = $(".lb-img", lb), lbCap = $(".lb-caption", lb);
   var lbCar = null, lbIdx = 0, lbReturn = null;
@@ -501,9 +524,14 @@
   function lbShow(i) {
     var imgs = carImages(lbCar);
     lbIdx = (i + imgs.length) % imgs.length;
-    lbImg.src = imgs[lbIdx];
+    var src = imgs[lbIdx];
+    if (lbImg.getAttribute("src") && lbImg.getAttribute("src") !== src) {
+      lbImg.classList.add("is-swapping");
+      lbImg.onload = function () { lbImg.classList.remove("is-swapping"); };
+    }
+    lbImg.src = src;
     lbImg.alt = (lbCar.name || L(lbCar.category)) + " – " + (lbIdx + 1) + "/" + imgs.length;
-    lbCap.textContent = (lbCar.name || L(lbCar.category)) + " · " + (lbIdx + 1) + " / " + imgs.length;
+    lbCap.textContent = (lbIdx + 1) + " / " + imgs.length;
     // nächstes Bild vorladen
     var pre = new Image(); pre.src = imgs[(lbIdx + 1) % imgs.length];
   }

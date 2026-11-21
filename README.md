@@ -58,7 +58,8 @@ Die Startseite gibt es auf **Deutsch, Englisch, Arabisch, Russisch und Französi
 - Anfrageformular: Die Anfrage öffnet sich als fertige Nachricht in WhatsApp oder im E-Mail-Programm
 - Flotte, Übergabeorte, Voraussetzungen, FAQ, Kontakt
 - Für Handys optimiert, SEO-Metadaten, strukturierte Daten (schema.org)
-- DSGVO-freundlich: keine Cookies, kein Tracking, keine externen Schriften, Google Maps lädt erst nach Klick
+- DSGVO-freundlich: keine Cookies, kein Tracking, Google Maps lädt erst nach Klick
+- Schriften selbst gehostet im Ordner `fonts/` (Manrope, IBM Plex Sans Arabic, beide SIL Open Font License), keine Verbindung zu Google
 
 ## Dateien
 
@@ -72,4 +73,5 @@ Die Startseite gibt es auf **Deutsch, Englisch, Arabisch, Russisch und Französi
 | `css/style.css` | Design |
 | `impressum.html`, `datenschutz.html`, `agb.html` | Rechtstexte (Vorlagen) |
 | `404.html` | Fehlerseite |
+| `fonts/` | Schriften (selbst gehostet) mit Lizenzen |
 | `img/` | Logo/Favicon, Vorschaubild für Social Media |

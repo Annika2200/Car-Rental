@@ -94,13 +94,11 @@ window.I18N = {
       "lang.label": "Language",
       "wa": "WhatsApp",
       "wa.float": "Open WhatsApp chat",
-
-      "hero.eyebrow": "Car rental on the Red Sea",
       "hero.title": "Your car in Hurghada is already waiting for you.",
       "hero.lead": "Handover right at the airport, your hotel or your holiday apartment. We offer fair fixed prices and clean, well-maintained cars with air conditioning. Send your request via WhatsApp and we'll get back to you as quickly as possible.",
       "hero.cta": "Request a car",
-      "hero.usp1": "✓ Handover at your preferred location",
-      "hero.usp2": "✓ No hidden fees",
+      "hero.usp1": "Handover at your preferred location",
+      "hero.usp2": "No hidden fees",
 
       "quick.title": "Calculate your price",
       "quick.est": "Estimated price",
@@ -130,13 +128,9 @@ window.I18N = {
       "feat.3d": "Clean, well-maintained cars, all with air conditioning.",
       "feat.4t": "Personal support",
       "feat.4d": "During your rental you can reach us on WhatsApp – in German, English and Arabic.",
-
-      "fleet.eyebrow": "Our fleet",
       "fleet.title": "The right car for every trip",
       "fleet.lead": "All prices include 150 free kilometres per day. The longer you rent, the cheaper it gets: we offer weekly, two-week and monthly rates.",
       "fleet.note": "Click a photo to see all pictures of the vehicle.",
-
-      "how.eyebrow": "How it works",
       "how.title": "Your rental car in 3 steps",
       "how.1t": "Send your request",
       "how.1d": "Choose the vehicle, dates and pick-up location and send your request via WhatsApp or e-mail.",
@@ -144,8 +138,6 @@ window.I18N = {
       "how.2d": "We check availability and send you a binding confirmation with the final price.",
       "how.3t": "Drive off",
       "how.3d": "At handover, show your driving licence and passport, sign the contract and off you go.",
-
-      "book.eyebrow": "Request",
       "book.title": "Request without obligation",
       "book.lead": "Fill in the form. Your request opens as a ready-made message in WhatsApp or your e-mail app – you just need to send it. The booking only becomes binding once we confirm it.",
       "sum.title": "Your summary",
@@ -160,12 +152,8 @@ window.I18N = {
       "leg.you": "Your details",
       "btn.wa": "Request via WhatsApp",
       "btn.mail": "Request via e-mail",
-
-      "loc.eyebrow": "Pick-up points",
       "loc.title": "We bring the car to you",
       "loc.lead": "Pick-up and return are possible at the following locations. Other places on the Red Sea on request.",
-
-      "req.eyebrow": "Requirements",
       "req.title": "What you need",
       "req.1": "Minimum age 21 (SUV & 4x4: 25)",
       "req.2": "Driving licence held for at least 2 years",
@@ -173,14 +161,11 @@ window.I18N = {
       "req.4": "Valid passport",
       "req.5": "Deposit in cash or by credit card",
       "req.6": "Use only within the Red Sea Governorate",
-      "inc.eyebrow": "Included",
       "inc.title": "Included in the price",
       "inc.2": "150 free kilometres per day",
       "inc.3": "Air conditioning in every car",
       "inc.4": "24/7 roadside assistance",
       "inc.5": "Handover at Hurghada Airport",
-
-      "faq.eyebrow": "FAQ",
       "faq.title": "Frequently asked questions",
       "faq.q1": "Do I need an international driving permit?",
       "faq.a1": "An international driving permit is recommended in Egypt and is often requested at police checkpoints. Bring both your national licence and the international permit. You can get one from the relevant authority in your home country before you travel.",
@@ -196,8 +181,6 @@ window.I18N = {
       "faq.a6": "Full to full: you receive the car with a full tank and return it full. Fuel is inexpensive in Egypt.",
       "faq.q7": "How do I pay?",
       "faq.a7": "At handover, in cash (euros, US dollars or Egyptian pounds) or by credit card. No down payment is required.",
-
-      "contact.eyebrow": "Contact",
       "contact.title": "We're here for you",
       "contact.lead": "The fastest way to reach us is WhatsApp. We usually reply within an hour.",
       "map.title": "Map",
@@ -280,13 +263,11 @@ window.I18N = {
       "lang.label": "اللغة",
       "wa": "واتساب",
       "wa.float": "فتح محادثة واتساب",
-
-      "hero.eyebrow": "تأجير سيارات على البحر الأحمر",
       "hero.title": "سيارتك في الغردقة بانتظارك بالفعل.",
       "hero.lead": "التسليم مباشرةً في المطار أو في فندقك أو شقتك السياحية. نقدم أسعارًا ثابتة وعادلة وسيارات نظيفة ومُعتنى بصيانتها ومزودة بالتكييف. أرسل طلبك عبر واتساب وسنتواصل معك في أسرع وقت ممكن.",
       "hero.cta": "اطلب سيارة",
-      "hero.usp1": "✓ التسليم في المكان الذي تختاره",
-      "hero.usp2": "✓ بدون رسوم خفية",
+      "hero.usp1": "التسليم في المكان الذي تختاره",
+      "hero.usp2": "بدون رسوم خفية",
 
       "quick.title": "احسب السعر",
       "quick.est": "السعر التقديري",
@@ -316,13 +297,9 @@ window.I18N = {
       "feat.3d": "سيارات نظيفة ومُعتنى بصيانتها، وجميعها مزودة بالتكييف.",
       "feat.4t": "تواصل شخصي",
       "feat.4d": "أثناء فترة الإيجار يمكنك التواصل معنا عبر واتساب بالألمانية والإنجليزية والعربية.",
-
-      "fleet.eyebrow": "أسطولنا",
       "fleet.title": "السيارة المناسبة لكل رحلة",
       "fleet.lead": "جميع الأسعار تشمل 150 كم مجانًا يوميًا. كلما طالت مدة الإيجار انخفض السعر: لدينا أسعار أسبوعية ولأسبوعين وشهرية.",
       "fleet.note": "اضغط على الصورة لمشاهدة جميع صور السيارة.",
-
-      "how.eyebrow": "كيف يعمل",
       "how.title": "سيارتك المستأجرة في 3 خطوات",
       "how.1t": "أرسل طلبك",
       "how.1d": "اختر السيارة والمدة ومكان الاستلام، ثم أرسل الطلب عبر واتساب أو البريد الإلكتروني.",
@@ -330,8 +307,6 @@ window.I18N = {
       "how.2d": "نتحقق من التوفر ونرسل إليك تأكيدًا ملزمًا بالسعر النهائي.",
       "how.3t": "انطلق",
       "how.3d": "عند الاستلام تُظهر رخصة القيادة وجواز السفر، وتوقّع العقد، ثم تنطلق.",
-
-      "book.eyebrow": "الطلب",
       "book.title": "اطلب دون أي التزام",
       "book.lead": "املأ النموذج، وسيُفتح طلبك كرسالة جاهزة في واتساب أو في برنامج البريد الإلكتروني، وما عليك سوى إرسالها. لا يصبح الحجز ملزمًا إلا بعد تأكيدنا.",
       "sum.title": "ملخص طلبك",
@@ -346,12 +321,8 @@ window.I18N = {
       "leg.you": "بياناتك",
       "btn.wa": "اطلب عبر واتساب",
       "btn.mail": "اطلب عبر البريد الإلكتروني",
-
-      "loc.eyebrow": "أماكن التسليم",
       "loc.title": "نوصل السيارة إليك",
       "loc.lead": "يمكن الاستلام والإرجاع في الأماكن التالية. أماكن أخرى على البحر الأحمر حسب الطلب.",
-
-      "req.eyebrow": "الشروط",
       "req.title": "ما تحتاجه",
       "req.1": "الحد الأدنى للعمر 21 عامًا (SUV وسيارات الدفع الرباعي: 25 عامًا)",
       "req.2": "رخصة قيادة منذ عامين على الأقل",
@@ -359,14 +330,11 @@ window.I18N = {
       "req.4": "جواز سفر ساري المفعول",
       "req.5": "تأمين مسترد نقدًا أو ببطاقة ائتمان",
       "req.6": "الاستخدام داخل محافظة البحر الأحمر فقط",
-      "inc.eyebrow": "مشمول",
       "inc.title": "مشمول في السعر",
       "inc.2": "150 كم مجانًا يوميًا",
       "inc.3": "تكييف في كل سيارة",
       "inc.4": "مساعدة على الطريق على مدار الساعة",
       "inc.5": "التسليم في مطار الغردقة",
-
-      "faq.eyebrow": "الأسئلة الشائعة",
       "faq.title": "أسئلة متكررة",
       "faq.q1": "هل أحتاج إلى رخصة قيادة دولية؟",
       "faq.a1": "يُنصح في مصر بحمل رخصة قيادة دولية، وكثيرًا ما تُطلب في نقاط التفتيش. أحضر رخصتك الوطنية والدولية معًا. يمكنك استخراج الرخصة الدولية من الجهة المختصة في بلدك قبل السفر.",
@@ -382,8 +350,6 @@ window.I18N = {
       "faq.a6": "ممتلئ إلى ممتلئ: تستلم السيارة بخزان ممتلئ وتعيدها بخزان ممتلئ. الوقود في مصر رخيص.",
       "faq.q7": "كيف أدفع؟",
       "faq.a7": "عند الاستلام نقدًا (يورو أو دولار أمريكي أو جنيه مصري) أو ببطاقة ائتمان. لا حاجة لدفعة مقدمة.",
-
-      "contact.eyebrow": "اتصل بنا",
       "contact.title": "نحن هنا من أجلك",
       "contact.lead": "أسرع طريقة للتواصل معنا هي واتساب. نرد عادةً خلال ساعة.",
       "map.title": "الخريطة",
@@ -466,13 +432,11 @@ window.I18N = {
       "lang.label": "Язык",
       "wa": "WhatsApp",
       "wa.float": "Открыть чат WhatsApp",
-
-      "hero.eyebrow": "Аренда авто на Красном море",
       "hero.title": "Ваш автомобиль в Хургаде уже ждёт вас.",
       "hero.lead": "Передача автомобиля прямо в аэропорту, у вашего отеля или апартаментов. У нас честные фиксированные цены и чистые, ухоженные автомобили с кондиционером. Отправьте заявку в WhatsApp, и мы свяжемся с вами как можно скорее.",
       "hero.cta": "Арендовать авто",
-      "hero.usp1": "✓ Передача в удобном для вас месте",
-      "hero.usp2": "✓ Без скрытых платежей",
+      "hero.usp1": "Передача в удобном для вас месте",
+      "hero.usp2": "Без скрытых платежей",
 
       "quick.title": "Рассчитать стоимость",
       "quick.est": "Примерная стоимость",
@@ -502,13 +466,9 @@ window.I18N = {
       "feat.3d": "Чистые автомобили в хорошем техническом состоянии, все с кондиционером.",
       "feat.4t": "Всегда на связи",
       "feat.4d": "Во время аренды мы на связи в WhatsApp – на немецком, английском и арабском.",
-
-      "fleet.eyebrow": "Наш автопарк",
       "fleet.title": "Подходящий автомобиль для любой поездки",
       "fleet.lead": "Все цены включают 150 км пробега в сутки. Чем дольше аренда, тем выгоднее: у нас есть цены на неделю, две недели и месяц.",
       "fleet.note": "Нажмите на фото, чтобы увидеть все снимки автомобиля.",
-
-      "how.eyebrow": "Как это работает",
       "how.title": "Автомобиль напрокат за 3 шага",
       "how.1t": "Отправьте заявку",
       "how.1d": "Выберите автомобиль, даты и место получения и отправьте заявку через WhatsApp или по e-mail.",
@@ -516,8 +476,6 @@ window.I18N = {
       "how.2d": "Мы проверим наличие и пришлём вам подтверждение с окончательной ценой.",
       "how.3t": "В путь!",
       "how.3d": "При получении покажите водительское удостоверение и паспорт, подпишите договор – и можно ехать.",
-
-      "book.eyebrow": "Заявка",
       "book.title": "Заявка без обязательств",
       "book.lead": "Заполните форму. Заявка откроется как готовое сообщение в WhatsApp или в почтовой программе – останется только отправить. Бронирование становится обязательным только после нашего подтверждения.",
       "sum.title": "Ваш расчёт",
@@ -532,12 +490,8 @@ window.I18N = {
       "leg.you": "Ваши данные",
       "btn.wa": "Отправить через WhatsApp",
       "btn.mail": "Отправить по e-mail",
-
-      "loc.eyebrow": "Места выдачи",
       "loc.title": "Мы доставим автомобиль к вам",
       "loc.lead": "Получение и возврат возможны в следующих местах. Другие места на побережье Красного моря – по запросу.",
-
-      "req.eyebrow": "Требования",
       "req.title": "Что вам понадобится",
       "req.1": "Минимальный возраст 21 год (SUV и 4x4: 25 лет)",
       "req.2": "Водительский стаж не менее 2 лет",
@@ -545,14 +499,11 @@ window.I18N = {
       "req.4": "Действующий загранпаспорт",
       "req.5": "Залог наличными или кредитной картой",
       "req.6": "Использование только в пределах мухафазы Красное море",
-      "inc.eyebrow": "Включено",
       "inc.title": "Входит в стоимость",
       "inc.2": "150 км пробега в сутки",
       "inc.3": "Кондиционер в каждом автомобиле",
       "inc.4": "Круглосуточная техпомощь",
       "inc.5": "Выдача в аэропорту Хургады",
-
-      "faq.eyebrow": "Вопросы",
       "faq.title": "Частые вопросы",
       "faq.q1": "Нужно ли международное водительское удостоверение?",
       "faq.a1": "В Египте рекомендуется иметь международное удостоверение, его часто спрашивают при полицейских проверках. Возьмите с собой национальное и международное удостоверение. Оформить международное можно до поездки в соответствующем ведомстве вашей страны.",
@@ -568,8 +519,6 @@ window.I18N = {
       "faq.a6": "Полный – полный: вы получаете автомобиль с полным баком и возвращаете его с полным баком. Бензин в Египте недорогой.",
       "faq.q7": "Как оплатить?",
       "faq.a7": "При получении наличными (евро, доллары США или египетские фунты) или кредитной картой. Предоплата не требуется.",
-
-      "contact.eyebrow": "Контакты",
       "contact.title": "Мы всегда на связи",
       "contact.lead": "Быстрее всего с нами можно связаться через WhatsApp. Обычно мы отвечаем в течение часа.",
       "map.title": "Карта",
@@ -652,13 +601,11 @@ window.I18N = {
       "lang.label": "Langue",
       "wa": "WhatsApp",
       "wa.float": "Ouvrir le chat WhatsApp",
-
-      "hero.eyebrow": "Location de voiture sur la mer Rouge",
       "hero.title": "Votre voiture à Hurghada vous attend déjà.",
       "hero.lead": "Remise directement à l'aéroport, à votre hôtel ou à votre appartement de vacances. Nous proposons des prix fixes et justes, ainsi que des voitures propres, bien entretenues et climatisées. Envoyez votre demande par WhatsApp et nous vous répondrons dans les plus brefs délais.",
       "hero.cta": "Demander une voiture",
-      "hero.usp1": "✓ Remise à l'endroit de votre choix",
-      "hero.usp2": "✓ Aucun frais caché",
+      "hero.usp1": "Remise à l'endroit de votre choix",
+      "hero.usp2": "Aucun frais caché",
 
       "quick.title": "Calculer le prix",
       "quick.est": "Prix estimé",
@@ -688,13 +635,9 @@ window.I18N = {
       "feat.3d": "Des voitures propres et bien entretenues, toutes climatisées.",
       "feat.4t": "Assistance personnelle",
       "feat.4d": "Pendant la location, vous nous joignez sur WhatsApp – en allemand, anglais et arabe.",
-
-      "fleet.eyebrow": "Notre flotte",
       "fleet.title": "La voiture idéale pour chaque voyage",
       "fleet.lead": "Tous les prix incluent 150 km gratuits par jour. Plus vous louez longtemps, moins c'est cher : nous proposons des tarifs à la semaine, aux deux semaines et au mois.",
       "fleet.note": "Cliquez sur une photo pour voir toutes les images du véhicule.",
-
-      "how.eyebrow": "Comment ça marche",
       "how.title": "Votre voiture de location en 3 étapes",
       "how.1t": "Envoyer la demande",
       "how.1d": "Choisissez le véhicule, les dates et le lieu de prise en charge, puis envoyez votre demande par WhatsApp ou e-mail.",
@@ -702,8 +645,6 @@ window.I18N = {
       "how.2d": "Nous vérifions la disponibilité et vous envoyons une confirmation ferme avec le prix final.",
       "how.3t": "Prendre la route",
       "how.3d": "Lors de la remise, présentez votre permis et votre passeport, signez le contrat et c'est parti.",
-
-      "book.eyebrow": "Demande",
       "book.title": "Demande sans engagement",
       "book.lead": "Remplissez le formulaire. Votre demande s'ouvre sous forme de message prêt à envoyer dans WhatsApp ou votre messagerie – il ne vous reste plus qu'à l'envoyer. La réservation n'est ferme qu'après notre confirmation.",
       "sum.title": "Votre récapitulatif",
@@ -718,12 +659,8 @@ window.I18N = {
       "leg.you": "Vos coordonnées",
       "btn.wa": "Demander par WhatsApp",
       "btn.mail": "Demander par e-mail",
-
-      "loc.eyebrow": "Lieux de remise",
       "loc.title": "Nous vous apportons la voiture",
       "loc.lead": "La prise en charge et la restitution sont possibles aux endroits suivants. Autres lieux sur la mer Rouge sur demande.",
-
-      "req.eyebrow": "Conditions",
       "req.title": "Ce dont vous avez besoin",
       "req.1": "Âge minimum 21 ans (SUV et 4x4 : 25 ans)",
       "req.2": "Permis de conduire depuis au moins 2 ans",
@@ -731,14 +668,11 @@ window.I18N = {
       "req.4": "Passeport valide",
       "req.5": "Caution en espèces ou par carte de crédit",
       "req.6": "Utilisation uniquement dans le gouvernorat de la mer Rouge",
-      "inc.eyebrow": "Inclus",
       "inc.title": "Compris dans le prix",
       "inc.2": "150 km gratuits par jour",
       "inc.3": "Climatisation dans chaque véhicule",
       "inc.4": "Assistance dépannage 24 h/24",
       "inc.5": "Remise à l'aéroport de Hurghada",
-
-      "faq.eyebrow": "FAQ",
       "faq.title": "Questions fréquentes",
       "faq.q1": "Ai-je besoin d'un permis de conduire international ?",
       "faq.a1": "En Égypte, le permis international est recommandé et souvent demandé lors des contrôles de police. Apportez votre permis national et le permis international. Vous pouvez l'obtenir avant le départ auprès de l'autorité compétente de votre pays.",
@@ -754,8 +688,6 @@ window.I18N = {
       "faq.a6": "Plein à plein : vous recevez la voiture avec le plein et la rendez avec le plein. Le carburant est bon marché en Égypte.",
       "faq.q7": "Comment puis-je payer ?",
       "faq.a7": "À la remise, en espèces (euros, dollars américains ou livres égyptiennes) ou par carte de crédit. Aucun acompte n'est nécessaire.",
-
-      "contact.eyebrow": "Contact",
       "contact.title": "Nous sommes là pour vous",
       "contact.lead": "Le moyen le plus rapide de nous joindre est WhatsApp. Nous répondons généralement en moins d'une heure.",
       "map.title": "Carte",
