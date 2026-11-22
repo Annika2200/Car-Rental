@@ -16,6 +16,6 @@
   box.innerHTML = notes[l][0] + ' <a href="index.html?lang=' + l + '">' + notes[l][1] + "</a>";
   var c = document.querySelector(".legal .container");
   if (c) c.insertBefore(box, c.firstChild);
-  var back = document.querySelector(".site-header .btn");
-  if (back) back.textContent = "← " + notes[l][1];
+  var back = document.querySelector(".site-header .back-label");
+  if (back) back.textContent = notes[l][1];
 })();

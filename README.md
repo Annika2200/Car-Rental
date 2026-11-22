@@ -8,7 +8,7 @@ Sie braucht keinen Server, keine Datenbank und keine Programmierung. Die Dateien
 1. **`js/config.js`**: **Platzhalter, unbedingt ersetzen:** `whatsapp`, `phoneDisplay`, `phoneLink`, `email` und `address`. Solange die Nummer `201000000000` eingetragen ist, zeigt die Website „Nummer folgt“.
    Außerdem: WhatsApp-Nummer, Telefon, E-Mail, Adresse, Öffnungszeiten, Fahrzeuge, Preise, Extras und Übergabeorte.
    Die ganze Website übernimmt diese Werte automatisch. Texte, die übersetzt werden, stehen dort als `{ de: "…", en: "…", ar: "…", ru: "…", fr: "…" }`.
-2. **`impressum.html`, `datenschutz.html`, `agb.html`**: Alle gelb markierten Platzhalter ersetzen und die gelben Hinweisboxen entfernen.
+2. **`impressum.html`, `datenschutz.html`, `agb.html`**: Alle grün markierten Platzhalter ersetzen und die grünen Hinweisboxen entfernen.
 3. **Domain**: Wenn deine Domain nicht `www.hurghada-drive.com` ist, ersetze sie in `index.html` (canonical, og:image, JSON-LD), `robots.txt` und `sitemap.xml`.
    Im JSON-LD-Block in `index.html` stehen außerdem Telefon und E-Mail. Die musst du dort auch ändern.
 
