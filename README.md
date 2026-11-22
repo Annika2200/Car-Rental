@@ -59,7 +59,7 @@ Die Startseite gibt es auf **Deutsch, Englisch, Arabisch, Russisch und Französi
 - Flotte, Übergabeorte, Voraussetzungen, FAQ, Kontakt
 - Für Handys optimiert, SEO-Metadaten, strukturierte Daten (schema.org)
 - DSGVO-freundlich: keine Cookies, kein Tracking, Google Maps lädt erst nach Klick
-- Schriften selbst gehostet im Ordner `fonts/` (Manrope, IBM Plex Sans Arabic, beide SIL Open Font License), keine Verbindung zu Google
+- Schriften selbst gehostet im Ordner `fonts/` (Overpass, Noto Kufi Arabic, beide SIL Open Font License), keine Verbindung zu Google
 
 ## Dateien
 

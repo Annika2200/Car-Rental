@@ -75,6 +75,8 @@
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12s-8-7-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
   <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M3 21l1.6-4.7A9 9 0 1 1 8 19.6z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1a3.5 3.5 0 0 1-2-2l1-1-1-2z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M3 8h17M15 3l5 5-5 5M21 16H4M9 11l-5 5 5 5"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
   <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
   <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
@@ -92,6 +94,7 @@
       <a href="#flotte" data-i18n="nav.fleet">Flotte</a>
       <a href="#ablauf" data-i18n="nav.how">So funktioniert's</a>
       <a href="#orte" data-i18n="nav.locations">Übergabeorte</a>
+      <a href="#transfer" data-i18n="nav.transfer">Transfers</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
       <a href="#buchen" class="btn btn-small btn-accent" data-i18n="nav.cta">Jetzt anfragen</a>
@@ -122,51 +125,14 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <svg viewBox="0 0 1440 640" preserveAspectRatio="xMidYMax slice">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#0b0a09"/>
-            <stop offset=".6" stop-color="#1c1610"/>
-            <stop offset="1" stop-color="#3a2618"/>
-          </linearGradient>
-          <radialGradient id="glow" cx=".68" cy=".14" r=".3">
-            <stop offset="0" stop-color="#519e43" stop-opacity=".16"/>
-            <stop offset="1" stop-color="#519e43" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="glow2" cx=".2" cy=".95" r=".5">
-            <stop offset="0" stop-color="#519e43" stop-opacity=".16"/>
-            <stop offset="1" stop-color="#519e43" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect width="1440" height="640" fill="url(#sky)"/>
-        <rect width="1440" height="640" fill="url(#glow)"/>
-        <rect width="1440" height="640" fill="url(#glow2)"/>
-        <g fill="#fff" opacity=".55">
-          <circle cx="120" cy="80" r="1.4"/><circle cx="340" cy="140" r="1"/><circle cx="520" cy="60" r="1.6"/><circle cx="700" cy="120" r="1"/>
-          <circle cx="860" cy="50" r="1.3"/><circle cx="1010" cy="150" r="1"/><circle cx="1300" cy="90" r="1.5"/><circle cx="1380" cy="200" r="1"/>
-          <circle cx="250" cy="230" r="1"/><circle cx="620" cy="210" r="1.2"/><circle cx="1220" cy="240" r="1"/><circle cx="60" cy="300" r="1.1"/>
-        </g>
-        <path d="M905 28a50 50 0 1 0 33 92 42 42 0 1 1-33-92z" fill="#f1ece4" opacity=".95"/>
-        <path d="M0 410 C140 340 260 330 380 380 S600 300 760 360 S1020 300 1160 360 S1360 330 1440 350 V640 H0Z" fill="#1e1914"/>
-        <path d="M0 410 C140 340 260 330 380 380 S600 300 760 360 S1020 300 1160 360 S1360 330 1440 350" fill="none" stroke="#f1ece4" stroke-opacity=".35" stroke-width="3"/>
-        <path d="M0 470 C200 430 420 470 640 440 S1000 470 1200 445 S1380 455 1440 450 V640 H0Z" fill="#17130f"/>
-        <g fill="#519e43">
-          <path d="M80 470 C200 448 330 450 430 462 C330 462 210 468 80 482Z" opacity=".75"/>
-          <path d="M980 452 C1100 432 1240 436 1360 448 C1240 450 1110 456 980 466Z" opacity=".6"/>
-          <path d="M1040 482 C1140 470 1230 470 1320 478 C1230 480 1140 484 1040 492Z" opacity=".45"/>
-        </g>
-        <path d="M0 540 H1440 V640 H0Z" fill="#121010"/>
-        <path d="M0 588 H1440" stroke="#519e43" stroke-opacity=".55" stroke-width="4" stroke-dasharray="44 34"/>
-      </svg>
-    </div>
-
+    
     <div class="container hero-inner">
-      <div class="hero-text">
+      <span class="gantry-posts" aria-hidden="true"></span>
+      <div class="hero-text sign sign-main">
         <h1 data-i18n="hero.title">Dein Auto für Hurghada wartet bereits auf dich.</h1>
         <p class="lead" data-i18n="hero.lead">Übergabe direkt am Flughafen, deinem Hotel oder deiner Ferienwohnung. Wir haben faire Festpreise, saubere und gut gewartete Autos mit Klimaanlage. Du fragst per WhatsApp an und wir melden uns so schnell wie möglich bei dir zurück.</p>
         <div class="hero-cta">
-          <a href="#buchen" class="btn btn-accent btn-large" data-i18n="hero.cta">Auto anfragen</a>
+          <a href="#buchen" class="btn btn-white btn-large" data-i18n="hero.cta">Auto anfragen</a>
           <a href="#" class="btn btn-ghost btn-large" data-whatsapp>
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
             <span data-i18n="wa">WhatsApp</span>
@@ -179,7 +145,7 @@
       </div>
 
       <!-- Schnellanfrage -->
-      <form class="quick-form card" id="quick-form" novalidate>
+      <form class="quick-form sign sign-price" id="quick-form" novalidate>
         <h2 data-i18n="quick.title">Preis berechnen</h2>
         <label><span data-i18n="f.pickup">Abholort</span>
           <select name="pickup" data-locations required></select>
@@ -199,28 +165,29 @@
         <button type="submit" class="btn btn-accent btn-block" data-i18n="quick.submit">Weiter zur Anfrage</button>
       </form>
     </div>
+    <div class="road" aria-hidden="true"></div>
   </section>
 
   <!-- ================= VORTEILE ================= -->
   <section class="section features">
     <div class="container grid-4">
       <article class="feature">
-        <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
+        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
         <h3 data-i18n="feat.1t">Übergabe am Flughafen</h3>
         <p data-i18n="feat.1d">Wir warten mit Namensschild in der Ankunftshalle, auch bei Landungen mitten in der Nacht.</p>
       </article>
       <article class="feature">
-        <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></div>
+        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></div>
         <h3 data-i18n="feat.2t">Festpreise</h3>
         <p data-i18n="feat.2d">Der Preis, den wir dir nennen, ist der Endpreis. Ohne Zusatzgebühren am Schalter.</p>
       </article>
       <article class="feature">
-        <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></div>
+        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></div>
         <h3 data-i18n="feat.3t">Gepflegte Autos</h3>
         <p data-i18n="feat.3d">Saubere und gut gewartete Autos, alle mit Klimaanlage.</p>
       </article>
       <article class="feature">
-        <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div>
+        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div>
         <h3 data-i18n="feat.4t">Persönlich erreichbar</h3>
         <p data-i18n="feat.4d">Während der Miete erreichst du uns per WhatsApp – auf Deutsch, Englisch und Arabisch.</p>
       </article>
@@ -271,7 +238,7 @@
       <div class="booking-info">
         <h2 data-i18n="book.title">Unverbindlich anfragen</h2>
         <p data-i18n="book.lead">Füll das Formular aus. Deine Anfrage öffnet sich als fertige Nachricht in WhatsApp oder in deinem E-Mail-Programm, du musst sie nur noch absenden. Erst mit unserer Bestätigung ist die Buchung verbindlich.</p>
-        <div class="summary card" aria-live="polite">
+        <div class="summary sign" aria-live="polite">
           <h3 data-i18n="sum.title">Deine Übersicht</h3>
           <dl>
             <dt data-i18n="sum.car">Fahrzeug</dt><dd id="sum-car">–</dd>
@@ -362,11 +329,38 @@
   <!-- ================= ORTE ================= -->
   <section class="section" id="orte">
     <div class="container">
-      <header class="section-head">
-        <h2 data-i18n="loc.title">Wir bringen das Auto zu dir</h2>
-        <p data-i18n="loc.lead">Übergabe und Rückgabe sind an folgenden Orten möglich. Andere Orte am Roten Meer auf Anfrage.</p>
-      </header>
-      <ul class="locations" id="locations-list"><!-- per JS --></ul>
+      <div class="sign sign-dir">
+        <header class="dir-head">
+          <h2 data-i18n="loc.title">Wir bringen das Auto zu dir</h2>
+          <p data-i18n="loc.lead">Übergabe und Rückgabe sind an folgenden Orten möglich. Andere Orte am Roten Meer auf Anfrage.</p>
+        </header>
+        <ul class="dir-list" id="locations-list"><!-- per JS --></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRANSFERS ================= -->
+  <section class="section section-alt" id="transfer">
+    <div class="container transfer">
+      <div class="sign sign-tourist">
+        <div>
+          <h2 data-i18n="tr.title">Private Transfers</h2>
+          <p data-i18n="tr.lead">Lieber fahren lassen? Wir bringen dich mit Fahrer vom Flughafen zu deinem Hotel oder deiner Ferienwohnung und wieder zurück.</p>
+          <p class="note-other" data-i18n="tr.other">Andere Strecken auf Anfrage.</p>
+        </div>
+        <div>
+          <div class="route">
+            <span class="route-end" data-i18n="tr.from">Flughafen Hurghada (HRG)</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-swap"/></svg>
+            <span class="route-end" data-i18n="tr.to">Hotel / Ferienwohnung</span>
+          </div>
+          <p class="route-price"><span data-i18n="tr.priceLabel">Preis</span><strong data-i18n="tr.price">auf Anfrage</strong></p>
+          <a href="#" class="btn btn-white btn-block" data-whatsapp-transfer>
+            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            <span data-i18n="tr.cta">Transfer per WhatsApp anfragen</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 

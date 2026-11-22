@@ -105,6 +105,11 @@
       a.target = "_blank";
       a.rel = "noopener";
     });
+    $$("[data-whatsapp-transfer]").forEach(function (a) {
+      a.href = waBase + "?text=" + encodeURIComponent(t("tr.msg", { company: C.company }));
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
   }
   $$("[data-phone]").forEach(function (a) { a.href = "tel:" + C.phoneLink; });
   $$("[data-email]").forEach(function (a) { a.href = "mailto:" + C.email; });
@@ -259,10 +264,20 @@
     });
   }
 
+  // Wegweiser: Ortsname zweisprachig wie auf ägyptischen Schildern
   function renderLocations() {
     $("#locations-list").innerHTML = C.locations.map(function (l) {
-      return '<li class="card"><h3>' + L(l.name) + "</h3><p>" + L(l.info) + '</p><p class="loc-fee">' +
-        (l.fee ? t("loc.delivery", { price: money(l.fee) }) : t("loc.free")) + "</p></li>";
+      var altLang = lang === "ar" ? "en" : "ar";
+      var alt = l.name && typeof l.name === "object" ? l.name[altLang] : "";
+      var km = (L(l.info) || "").match(/(\d+)\s*(km|كم|км)/);
+      return '<li class="dir-row">' +
+        '<span class="dir-arrow">' + icon("arrow") + "</span>" +
+        "<span><span class=\"dir-name\">" + esc(L(l.name)) + "</span>" +
+          (alt && alt !== L(l.name) ? '<span class="dir-alt" lang="' + altLang + '">' + esc(alt) + "</span>" : "") +
+          '<span class="dir-info">' + esc(L(l.info)) + "</span></span>" +
+        '<span class="dir-km">' + (km ? km[1] + " km" : "") + "</span>" +
+        '<span class="dir-fee">' + (l.fee ? t("loc.delivery", { price: money(l.fee) }) : t("loc.free")) + "</span>" +
+        "</li>";
     }).join("");
   }
 
