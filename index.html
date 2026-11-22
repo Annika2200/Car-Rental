@@ -141,6 +141,8 @@
         <ul class="hero-usps">
           <li data-i18n="hero.usp1">Übergabe am Wunschort</li>
           <li data-i18n="hero.usp2">Keine versteckten Kosten</li>
+          <li data-i18n="feat.3t">Gepflegte Autos</li>
+          <li data-i18n="feat.4t">Persönlich erreichbar</li>
         </ul>
       </div>
 
@@ -168,31 +170,6 @@
     <div class="road" aria-hidden="true"></div>
   </section>
 
-  <!-- ================= VORTEILE ================= -->
-  <section class="section features">
-    <div class="container grid-4">
-      <article class="feature">
-        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
-        <h3 data-i18n="feat.1t">Übergabe am Flughafen</h3>
-        <p data-i18n="feat.1d">Wir warten mit Namensschild in der Ankunftshalle, auch bei Landungen mitten in der Nacht.</p>
-      </article>
-      <article class="feature">
-        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg></div>
-        <h3 data-i18n="feat.2t">Festpreise</h3>
-        <p data-i18n="feat.2d">Der Preis, den wir dir nennen, ist der Endpreis. Ohne Zusatzgebühren am Schalter.</p>
-      </article>
-      <article class="feature">
-        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></div>
-        <h3 data-i18n="feat.3t">Gepflegte Autos</h3>
-        <p data-i18n="feat.3d">Saubere und gut gewartete Autos, alle mit Klimaanlage.</p>
-      </article>
-      <article class="feature">
-        <div class="feature-icon tile"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div>
-        <h3 data-i18n="feat.4t">Persönlich erreichbar</h3>
-        <p data-i18n="feat.4d">Während der Miete erreichst du uns per WhatsApp – auf Deutsch, Englisch und Arabisch.</p>
-      </article>
-    </div>
-  </section>
 
   <!-- ================= FLOTTE ================= -->
   <section class="section section-alt" id="flotte">
@@ -202,6 +179,10 @@
         <p data-i18n="fleet.lead">Alle Preise inklusive 150 Freikilometern pro Tag. Je länger du mietest, desto günstiger wird es: Wir haben Wochen-, Zwei-Wochen- und Monatspreise.</p>
       </header>
       <div class="fleet-grid" id="fleet-grid"><!-- wird per JS aus config.js befüllt --></div>
+      <div class="sign sign-more" id="fleet-more" hidden>
+        <h3 data-i18n="fleet.more">Weitere Fahrzeugklassen</h3>
+        <ul class="more-list" id="fleet-more-list"></ul>
+      </div>
       <p class="note" data-i18n="fleet.note">Klicke auf ein Foto, um alle Bilder des Fahrzeugs zu sehen.</p>
     </div>
   </section>
@@ -319,7 +300,7 @@
         <p class="form-error" id="form-error" role="alert" hidden></p>
 
         <div class="form-actions">
-          <button type="submit" class="btn btn-whatsapp btn-block" data-channel="whatsapp" data-i18n="btn.wa">Per WhatsApp anfragen</button>
+          <button type="submit" class="btn btn-white btn-block" data-channel="whatsapp" data-i18n="btn.wa">Per WhatsApp anfragen</button>
           <button type="submit" class="btn btn-outline btn-block" data-channel="email" data-i18n="btn.mail">Per E-Mail anfragen</button>
         </div>
       </form>
@@ -342,7 +323,7 @@
   <!-- ================= TRANSFERS ================= -->
   <section class="section section-alt" id="transfer">
     <div class="container transfer">
-      <div class="sign sign-tourist">
+      <div class="sign sign-transfer">
         <div>
           <h2 data-i18n="tr.title">Private Transfers</h2>
           <p data-i18n="tr.lead">Lieber fahren lassen? Wir bringen dich mit Fahrer vom Flughafen zu deinem Hotel oder deiner Ferienwohnung und wieder zurück.</p>
@@ -443,10 +424,11 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span data-config="openingHours"></span></li>
         </ul>
       </div>
-      <div class="map-placeholder card" id="map">
+      <div class="map-placeholder sign" id="map">
+        <svg class="icon map-pin" aria-hidden="true"><use href="#i-pin"/></svg>
         <p><strong data-i18n="map.title">Karte</strong></p>
         <p data-i18n="map.text">Die Google-Maps-Karte wird erst nach deiner Zustimmung geladen. Dabei werden Daten an Google übertragen.</p>
-        <button type="button" class="btn btn-outline" id="load-map" data-i18n="map.btn">Karte laden</button>
+        <button type="button" class="btn btn-white" id="load-map" data-i18n="map.btn">Karte laden</button>
       </div>
     </div>
   </section>

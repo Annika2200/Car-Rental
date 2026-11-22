@@ -200,7 +200,7 @@
   function carImages(car) { return car.images || (car.image ? [car.image] : []); }
 
   function renderFleet() {
-    grid.innerHTML = C.fleet.map(function (car) {
+    grid.innerHTML = C.fleet.filter(bookable).map(function (car) {
       var cat = L(car.category);
       var imgs = carImages(car);
       var cover = car.cover || imgs[0];
@@ -245,6 +245,16 @@
           price +
         "</div></article>";
     }).join("");
+    // Kategorien ohne Fahrzeug: eine Tafel statt leerer Karten
+    var rest = C.fleet.filter(function (c) { return !bookable(c); });
+    var altLang = lang === "ar" ? "en" : "ar";
+    $("#fleet-more").hidden = !rest.length;
+    $("#fleet-more-list").innerHTML = rest.map(function (c) {
+      var alt = c.category && typeof c.category === "object" ? c.category[altLang] : "";
+      return '<li><span class="more-name">' + esc(L(c.category)) + "</span>" +
+        (alt && alt !== L(c.category) ? '<span class="more-alt" lang="' + altLang + '">' + esc(alt) + "</span>" : "") +
+        '<span class="more-note">' + t("fleet.moreNote") + "</span></li>";
+    }).join("");
   }
 
   function renderSelects() {
@@ -271,11 +281,10 @@
       var alt = l.name && typeof l.name === "object" ? l.name[altLang] : "";
       var km = (L(l.info) || "").match(/(\d+)\s*(km|كم|км)/);
       return '<li class="dir-row">' +
-        '<span class="dir-arrow">' + icon("arrow") + "</span>" +
+        '<span class="dir-arrow">' + icon("arrow") + (km ? '<span class="dir-km">' + km[1] + " km</span>" : "") + "</span>" +
         "<span><span class=\"dir-name\">" + esc(L(l.name)) + "</span>" +
           (alt && alt !== L(l.name) ? '<span class="dir-alt" lang="' + altLang + '">' + esc(alt) + "</span>" : "") +
           '<span class="dir-info">' + esc(L(l.info)) + "</span></span>" +
-        '<span class="dir-km">' + (km ? km[1] + " km" : "") + "</span>" +
         '<span class="dir-fee">' + (l.fee ? t("loc.delivery", { price: money(l.fee) }) : t("loc.free")) + "</span>" +
         "</li>";
     }).join("");
@@ -356,7 +365,7 @@
 
   function updateQuick() {
     var r = calc(quick);
-    $("#quick-total").textContent = !r ? "–" : r.short ? t("car.minDays", { days: daysText(r.min) }) : money(r.total) + " · " + daysText(r.days);
+    $("#quick-total").textContent = !r ? "–" : r.short ? t("car.minDays", { days: daysText(r.min) }) : money(r.total) + "\u2002–\u2002" + daysText(r.days);
   }
 
   function updateBooking() {

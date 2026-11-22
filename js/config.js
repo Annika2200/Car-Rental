@@ -35,11 +35,11 @@ window.SITE_CONFIG = {
   mapQuery: "Sheraton Road, Hurghada, Egypt",
 
   openingHours: {
-    de: "Täglich 08:00 – 22:00 Uhr · Flughafen-Übergabe rund um die Uhr",
-    en: "Daily 08:00 – 22:00 · Airport handover 24/7",
-    ar: "يوميًا 08:00 – 22:00 · التسليم في المطار على مدار الساعة",
-    ru: "Ежедневно 08:00 – 22:00 · Выдача в аэропорту круглосуточно",
-    fr: "Tous les jours 08:00 – 22:00 · Remise à l'aéroport 24 h/24"
+    de: "Täglich 08:00 – 22:00 Uhr – Flughafen-Übergabe rund um die Uhr",
+    en: "Daily 08:00 – 22:00 – Airport handover 24/7",
+    ar: "يوميًا 08:00 – 22:00 – التسليم في المطار على مدار الساعة",
+    ru: "Ежедневно 08:00 – 22:00 – Выдача в аэропорту круглосуточно",
+    fr: "Tous les jours 08:00 – 22:00 – Remise à l'aéroport 24 h/24"
   },
 
   // Währung für alle Preise auf der Website
