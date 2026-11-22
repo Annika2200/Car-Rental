@@ -75,6 +75,7 @@ window.I18N = {
       "tr.msg": "Hallo {company}, ich interessiere mich für einen Transfer (Flughafen ↔ Hotel).",
       "fleet.more": "Weitere Fahrzeugklassen",
       "fleet.moreNote": "Foto folgt – Preis auf Anfrage",
+      "contact.pending": "Nummer folgt",
       "wa.greeting": "Hallo {company}, ich interessiere mich für einen Mietwagen.",
       "mail.subject": "Mietwagen-Anfrage {name}",
       "map.iframe": "Karte",
@@ -258,6 +259,7 @@ window.I18N = {
       "tr.msg": "Hello {company}, I'm interested in a transfer (airport ↔ hotel).",
       "fleet.more": "More vehicle classes",
       "fleet.moreNote": "Photo coming soon – price on request",
+      "contact.pending": "Number coming soon",
       "wa.greeting": "Hello {company}, I'm interested in renting a car.",
       "mail.subject": "Car rental request {name}"
     },
@@ -439,6 +441,7 @@ window.I18N = {
       "tr.msg": "مرحبًا {company}، أرغب في خدمة نقل (المطار ↔ الفندق).",
       "fleet.more": "فئات سيارات أخرى",
       "fleet.moreNote": "الصورة قريبًا – السعر عند الطلب",
+      "contact.pending": "الرقم قريبًا",
       "wa.greeting": "مرحبًا {company}، أرغب في استئجار سيارة.",
       "mail.subject": "طلب استئجار سيارة {name}"
     },
@@ -620,6 +623,7 @@ window.I18N = {
       "tr.msg": "Здравствуйте, {company}! Меня интересует трансфер (аэропорт ↔ отель).",
       "fleet.more": "Другие классы автомобилей",
       "fleet.moreNote": "Фото скоро – цена по запросу",
+      "contact.pending": "Номер скоро",
       "wa.greeting": "Здравствуйте, {company}! Меня интересует аренда автомобиля.",
       "mail.subject": "Заявка на аренду {name}"
     },
@@ -801,6 +805,7 @@ window.I18N = {
       "tr.msg": "Bonjour {company}, je souhaite un transfert (aéroport ↔ hôtel).",
       "fleet.more": "Autres catégories",
       "fleet.moreNote": "Photo à venir – prix sur demande",
+      "contact.pending": "Numéro à venir",
       "wa.greeting": "Bonjour {company}, je souhaite louer une voiture.",
       "mail.subject": "Demande de location {name}"
     }

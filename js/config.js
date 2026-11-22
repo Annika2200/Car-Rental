@@ -15,6 +15,8 @@ window.SITE_CONFIG = {
 
   // WhatsApp-Nummer im internationalen Format OHNE "+" und ohne Leerzeichen
   // Beispiel Ägypten: 201001234567
+  // PLATZHALTER: Solange hier 201000000000 steht, zeigt die Website
+  // "Nummer folgt" statt einer Telefonnummer. Echte Nummer eintragen!
   whatsapp: "201000000000",
 
   // Telefonnummer so, wie sie angezeigt werden soll
@@ -146,7 +148,7 @@ window.SITE_CONFIG = {
     { id: "compact", type: "small", color: "#d9534f",
       category: { de: "Kompaktklasse", en: "Compact", ar: "مدمجة", ru: "Компакт", fr: "Compacte" } },
     { id: "suv", type: "suv", color: "#9aa3a8",
-      category: { de: "SUV", en: "SUV", ar: "SUV", ru: "Кроссовер (SUV)", fr: "SUV" } },
+      category: { de: "SUV", en: "SUV", ar: "سيارة رياضية متعددة الاستخدامات", ru: "Кроссовер (SUV)", fr: "SUV" } },
     { id: "jeep", type: "suv", color: "#c9b79c",
       category: { de: "Geländewagen 4x4", en: "4x4 off-roader", ar: "دفع رباعي 4x4", ru: "Внедорожник 4x4", fr: "4x4 tout-terrain" } },
     { id: "van", type: "van", color: "#cfd3d6",

@@ -73,8 +73,11 @@
   }
 
   function fillConfig() {
+    var phonePending = /^\+?20 ?100 ?000 ?0000$/.test(String(C.phoneDisplay).trim());
     $$("[data-config]").forEach(function (el) {
-      var v = C[el.getAttribute("data-config")];
+      var key = el.getAttribute("data-config");
+      if (key === "phoneDisplay" && phonePending) { el.textContent = t("contact.pending"); el.classList.add("is-pending"); return; }
+      var v = C[key];
       if (v !== undefined) el.textContent = L(v);
     });
   }

@@ -179,11 +179,11 @@
         <p data-i18n="fleet.lead">Alle Preise inklusive 150 Freikilometern pro Tag. Je länger du mietest, desto günstiger wird es: Wir haben Wochen-, Zwei-Wochen- und Monatspreise.</p>
       </header>
       <div class="fleet-grid" id="fleet-grid"><!-- wird per JS aus config.js befüllt --></div>
+      <p class="note" data-i18n="fleet.note">Klicke auf ein Foto, um alle Bilder des Fahrzeugs zu sehen.</p>
       <div class="sign sign-more" id="fleet-more" hidden>
         <h3 data-i18n="fleet.more">Weitere Fahrzeugklassen</h3>
         <ul class="more-list" id="fleet-more-list"></ul>
       </div>
-      <p class="note" data-i18n="fleet.note">Klicke auf ein Foto, um alle Bilder des Fahrzeugs zu sehen.</p>
     </div>
   </section>
 
@@ -416,13 +416,15 @@
       <div>
         <h2 data-i18n="contact.title">Wir sind für dich da</h2>
         <p data-i18n="contact.lead">Am schnellsten erreichst du uns per WhatsApp. Wir antworten in der Regel innerhalb einer Stunde.</p>
-        <ul class="contact-list">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><a href="#" data-whatsapp><span data-i18n="wa">WhatsApp</span>: <bdi data-config="phoneDisplay"></bdi></a></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="#" data-phone><bdi data-config="phoneDisplay"></bdi></a></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="#" data-email><bdi data-config="email"></bdi></a></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span data-config="address"></span></li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span data-config="openingHours"></span></li>
-        </ul>
+        <div class="sign sign-contact">
+          <ul class="contact-list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg><a href="#" data-whatsapp><span data-i18n="wa">WhatsApp</span>: <bdi data-config="phoneDisplay"></bdi></a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="#" data-phone><bdi data-config="phoneDisplay"></bdi></a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="#" data-email><bdi data-config="email"></bdi></a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span data-config="address"></span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span data-config="openingHours"></span></li>
+          </ul>
+        </div>
       </div>
       <div class="map-placeholder sign" id="map">
         <svg class="icon map-pin" aria-hidden="true"><use href="#i-pin"/></svg>
